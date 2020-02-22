@@ -1,0 +1,117 @@
+[
+  {
+    "number": 0,
+    "name": "Unranked",
+    "image": "https://r6tab.com/images/pngranks/0.png?x=3"
+  },
+  {
+    "number": 1,
+    "name": "Copper V",
+    "image": "https://cdn.r6stats.com/seasons/ranks/copper-5.svg"
+  },
+  {
+    "number": 2,
+    "name": "Copper IV",
+    "image": "https://cdn.r6stats.com/seasons/ranks/copper-4.svg"
+  },
+  {
+    "number": 3,
+    "name": "Copper III",
+    "image": "https://cdn.r6stats.com/seasons/ranks/copper-3.svg"
+  },
+  {
+    "number": 4,
+    "name": "Copper II",
+    "image": "https://cdn.r6stats.com/seasons/ranks/copper-2.svg"
+  },
+  {
+    "number": 5,
+    "name": "Copper I",
+    "image": "https://cdn.r6stats.com/seasons/ranks/copper-1.svg"
+  },
+  {
+    "number": 6,
+    "name": "Bronze V",
+    "image": "https://cdn.r6stats.com/seasons/ranks/bronze-5.svg"
+  },
+  {
+    "number": 7,
+    "name": "Bronze IV",
+    "image": "https://cdn.r6stats.com/seasons/ranks/bronze-4.svg"
+  },
+  {
+    "number": 8,
+    "name": "Bronze III",
+    "image": "https://cdn.r6stats.com/seasons/ranks/bronze-3.svg"
+  },
+  {
+    "number": 9,
+    "name": "Bronze II",
+    "image": "https://cdn.r6stats.com/seasons/ranks/bronze-2.svg"
+  },
+  {
+    "number": 10,
+    "name": "Bronze I",
+    "image": "https://cdn.r6stats.com/seasons/ranks/bronze-1.svg"
+  },
+  {
+    "number": 11,
+    "name": "Silver V",
+    "image": "https://cdn.r6stats.com/seasons/ranks/bronze-5.svg"
+  },
+  {
+    "number": 12,
+    "name": "Silver IV",
+    "image": "https://cdn.r6stats.com/seasons/ranks/bronze-4.svg"
+  },
+  {
+    "number": 13,
+    "name": "Silver III",
+    "image": "https://cdn.r6stats.com/seasons/ranks/bronze-3.svg"
+  },
+  {
+    "number": 14,
+    "name": "Silver II",
+    "image": "https://cdn.r6stats.com/seasons/ranks/bronze-2.svg"
+  },
+  {
+    "number": 15,
+    "name": "Silver I",
+    "image": "https://cdn.r6stats.com/seasons/ranks/bronze-1.svg"
+  },
+  {
+    "number": 16,
+    "name": "Gold III",
+    "image": "https://cdn.r6stats.com/seasons/ranks/gold-3.svg"
+  },
+  {
+    "number": 17,
+    "name": "Gold II",
+    "image": "https://cdn.r6stats.com/seasons/ranks/gold-2.svg"
+  },
+  {
+    "number": 18,
+    "name": "Gold I",
+    "image": "https://cdn.r6stats.com/seasons/ranks/gold-1.svg"
+  },
+  {
+    "number": 19,
+    "name": "Platinum III",
+    "image": "https://cdn.r6stats.com/seasons/ranks/platinum-3.svg"
+  },
+  {
+    "number": 20,
+    "name": "Platinum II",
+    "image": "https://cdn.r6stats.com/seasons/ranks/platinum-2.svg"
+  },
+  {
+    "number": 21,
+    "name": "Platinum I",
+    "image": "https://cdn.r6stats.com/seasons/ranks/platinum-1.svg"
+  },
+  {
+    "number": 22,
+    "name": "Diamond",
+    "image": "https://cdn.r6stats.com/seasons/ranks/diamond.svg"
+  }
+]

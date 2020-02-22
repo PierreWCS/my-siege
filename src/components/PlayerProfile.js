@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import './PlayerProfile.css';
+import ranks from './datas/ranks';
+import RanksBySeason from "./RanksBySeason";
 
 const PlayerStats = ( player ) => {
   const [playerProfile, setPlayerProile] = useState(null);
@@ -35,6 +37,10 @@ const PlayerStats = ( player ) => {
             <div>
               <h4>General KD {playerProfile.kd / 100}</h4>
             </div>
+            <div className="rankedStats">
+              <h3>Current MMR {playerProfile.p_currentmmr}</h3>
+            </div>
+            <RanksBySeason playerProfile={playerProfile} />
           </div>
           :
           null
