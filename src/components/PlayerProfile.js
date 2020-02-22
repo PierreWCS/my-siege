@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Axios from 'axios';
 import './PlayerProfile.css';
 import ranks from './datas/ranks';
 import RanksBySeason from "./RanksBySeason";
 
-const PlayerStats = ( player ) => {
+const PlayerStats = ( player, setPlayer ) => {
   const [playerProfile, setPlayerProile] = useState(null);
 
   useEffect(() => {

@@ -1,8 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ranks from "./datas/ranks";
 import './RanksBySeason.css';
 
 const RanksBySeason = ({ playerProfile }) => {
+  const [seaons, setSeasons] = useState(null);
+
+  useEffect(() => {
+
+  }, []);
+
+  const getSeasons = () => {
+    let stockSeasons = [];
+    playerProfile.forEach((element) => {
+      if (element.startsWith('season') !== "") {
+        // stockSeasons = stockSeasons[... element]
+      }
+    })
+  };
   return (
     <div className="allSeasonsContainer">
       <div className="seasonsRank">

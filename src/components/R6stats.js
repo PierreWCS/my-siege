@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCoffee} from '@fortawesome/free-solid-svg-icons';
 import './R6stats.css';
 import axios from "axios";
 import PlayerProfile from "./PlayerProfile";
+import NavigationBar from "./NavigationBar";
 
 const R6stats = () => {
   const [playersProposition, setPlayersProposition] = useState(null);
@@ -43,7 +42,7 @@ const R6stats = () => {
       <div className="r6statsSearchPlayerContainer">
         {
           playerSelected ?
-            <PlayerProfile player={playerSelected}/>
+            <PlayerProfile player={playerSelected} setPlayer={setPlayerSelected}/>
             :
             <label className="searchPlayerContainerLabel" htmlFor="playerName">
               <h1>Search a player</h1>
