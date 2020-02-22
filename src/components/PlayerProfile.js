@@ -26,7 +26,7 @@ const PlayerStats = ( player ) => {
         playerProfile ?
           <div className="statsMainContainer">
             <div className="imgNameAndLvl">
-              <img className="playerImage" src={`https://ubisoft-avatars.akamaized.net/${playerProfile.p_user}/default_146_146.png`} alt="player image"/>
+              <img className="playerImageStats" src={`https://ubisoft-avatars.akamaized.net/${playerProfile.p_user}/default_146_146.png`} alt="player image"/>
               <div className="nameAndLvl">
                 <h1 style={{ color: 'white' }}>{playerProfile.p_name}</h1>
                 <h4 style={{ color: 'white' }}>Level {playerProfile.p_level}</h4>
