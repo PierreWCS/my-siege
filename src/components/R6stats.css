@@ -1,0 +1,140 @@
+.r6statsMainContainer {
+    width: 100%;
+    height: 100vh;
+    background-color: #282c34;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.r6statsSearchPlayerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("https://www.ecopetit.cat/wpic/mpic/60-605928_mozzie-rainbow-six-siege-4k-rainbow-six-siege.jpg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 90%;
+    height: 95%;
+}
+
+/*          Search a player            */
+
+.searchPlayerContainerLabel {
+    color: whitesmoke;
+    background-color: rgba(50,50,50, 0.5);
+    width: 60%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.inputAndButtonSearchPlayer {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputAndButtonRow {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.searchPlayerInput {
+    font-size: 24px;
+    background-color: rgba(46, 46, 46, 1);
+    color: whitesmoke;
+    text-align: center;
+    width: 100%;
+    height: 80px;
+    box-sizing: border-box;
+    border: solid 2px black;
+}
+
+.searchPlayerInput:focus {
+    border-bottom: indianred 4px solid;
+}
+
+/*          Search propositions         */
+
+.propositionPlayerSearchContainer {
+    overflow: auto;
+    border: 1px black solid;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(46, 46, 46, 1);
+}
+
+.playerCard {
+    background-color: black;
+    margin: 2px;
+    height: 65px;
+    width: 95%;
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.playerCard:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.playerImage {
+    width: 50px;
+    height: 50px;
+}
+
+.loadingImage {
+    position: absolute;
+    width: 150px;
+    animation-name: spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+
+/*          Smartphone display          */
+
+@media (max-width: 1060px) {
+    .searchPlayerContainerLabel {
+        width: 90%;
+    }
+    .r6statsSearchPlayerContainer {
+        background-size: 200%;
+    }
+    .inputAndButtonSearchPlayer {
+        width: 85%;
+    }
+    .loadingImage {
+        width: 100px;
+    }
+}
