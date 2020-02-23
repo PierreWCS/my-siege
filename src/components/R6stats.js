@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import './R6stats.css';
 import axios from "axios";
 import PlayerProfile from "./PlayerProfile";
-import NavigationBar from "./NavigationBar";
 
 const R6stats = () => {
   const [playersProposition, setPlayersProposition] = useState(null);

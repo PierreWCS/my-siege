@@ -4,15 +4,27 @@
     height: 80%;
 }
 
+.statsMainContainer {
+    width: 100%;
+}
+
 .playerStatsInfoContainer {
     display: flex;
+    width: 70%;
     flex-direction: column;
     align-items: center;
+}
+
+.imgNameLvlContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
 }
 
 .imgNameAndLvl {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     margin: 25px;
 }
 
@@ -30,4 +42,26 @@
 .playerImageStats {
     width: 100px;
     height: 100px;
+}
+
+
+/*          Actual Rank         */
+
+.actualRankContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 250px;
+}
+
+.actualRank {
+    width: 100px;
+}
+
+.previousRank {
+    width: 60px;
+}
+
+.nextRank {
+    width: 60px;
 }
