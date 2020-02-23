@@ -4,11 +4,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    overflow: auto;
+    height: 350px;
+    width: 450px;
+    margin: 25px;
 }
 
 .seasonsRank {
     background-color: #282c34;
-    width: 80%;
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: flex-start;

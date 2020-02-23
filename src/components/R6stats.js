@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import './R6stats.css';
 import axios from "axios";
 import PlayerProfile from "./PlayerProfile";
@@ -39,9 +41,20 @@ const R6stats = () => {
   return (
     <div className="r6statsMainContainer">
       <div className="r6statsSearchPlayerContainer">
+        <FontAwesomeIcon
+          icon={faSearch}
+          className="searchIcon fa-3x"
+          onClick={() => {
+            setPlayerSelected(null);
+            setPlayersProposition(null);
+          }}
+        />
         {
           playerSelected ?
-            <PlayerProfile player={playerSelected} setPlayer={setPlayerSelected}/>
+            <PlayerProfile
+              player={playerSelected}
+              setPlayer={setPlayerSelected}
+            />
             :
             <label className="searchPlayerContainerLabel" htmlFor="playerName">
               <h1>Search a player</h1>

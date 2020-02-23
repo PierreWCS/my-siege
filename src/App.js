@@ -8,7 +8,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <NavigationBar />
         <Switch>
           <Route exact path="/" component={R6stats}/>
         </Switch>

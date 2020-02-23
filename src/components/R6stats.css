@@ -1,6 +1,6 @@
 .r6statsMainContainer {
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     background-color: #282c34;
     display: flex;
     flex-direction: column;
@@ -19,6 +19,17 @@
     background-repeat: no-repeat;
     width: 90%;
     height: 95%;
+}
+
+.searchIcon {
+    color: whitesmoke;
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    cursor: pointer;
+}
+.searchIcon:hover {
+    transform: scale(1.1);
 }
 
 /*          Search a player            */
@@ -103,7 +114,7 @@
     position: absolute;
     width: 150px;
     animation-name: spin;
-    animation-duration: 2000ms;
+    animation-duration: 1000ms;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }

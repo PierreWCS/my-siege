@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Axios from 'axios';
 import './PlayerProfile.css';
 import ranks from './datas/ranks';
@@ -20,6 +18,7 @@ const PlayerStats = ( player, setPlayer ) => {
       .then(data => {
         console.log(data);
         let playerData = data;
+        console.log(JSON.parse(data.operators));
         setPlayerProile(playerData);
       })
   };
@@ -44,20 +43,32 @@ const PlayerStats = ( player, setPlayer ) => {
               {/*     Actual MMR      */}
 
               <div>
+                <h2 style={{ color: 'white', margin: 0 }}>{ranks[playerProfile.p_currentrank + 2].name}</h2>
                 <div className="actualRankContainer">
                   <img className="previousRank" src={ranks[playerProfile.p_currentrank + 1].image} alt=""/>
                   <img className="actualRank" src={ranks[playerProfile.p_currentrank + 2].image} alt=""/>
-                  <img className="nextRank" src={ranks[playerProfile.season15rank + 3].image} alt=""/>
+                  <img className="nextRank" src={ranks[playerProfile.p_currentrank + 3].image} alt=""/>
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <h3>Current MMR {playerProfile.p_currentmmr}</h3>
+                  <h3 style={{ color: 'white', margin: 0 }}>Current MMR {playerProfile.p_currentmmr}</h3>
                 </div>
               </div>
             </div>
-            <div>
-              <h4>General KD {playerProfile.kd / 100}</h4>
+            <div className="rankedStatsContainer">
+              <RanksBySeason playerProfile={playerProfile} />
+              <div className="rankedStatsSection">
+                <h1>Ranked stats</h1>
+                <h4>General ranked KD: {playerProfile.kd / 100}</h4>
+                <div className="statsRankedSmallContainer">
+                  <p className="smallStatsItem">Kills: {playerProfile.ranked.EU_kills}</p>
+                  <p className="smallStatsItem">Deaths: {playerProfile.ranked.EU_deaths}</p>
+                </div>
+                <div className="statsRankedSmallContainer">
+                  <p className="smallStatsItem">Wins: {playerProfile.ranked.EU_wins}</p>
+                  <p className="smallStatsItem">Losses: {playerProfile.ranked.EU_losses}</p>
+                </div>
+              </div>
             </div>
-            <RanksBySeason playerProfile={playerProfile} />
           </div>
           :
           null
