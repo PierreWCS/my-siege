@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import './PlayerProfile.css';
 import ranks from './datas/ranks';
+import op from './datas/operators';
 import RanksBySeason from "./RanksBySeason";
 
 const PlayerStats = ( player, setPlayer ) => {
   const [playerProfile, setPlayerProile] = useState(null);
   const [operators, setOperators] = useState(null);
+  const [favoriteOperator, setFavoriteOperator] = useState(null);
+  const [operatorInfo, setOperatorInfo] = useState(null);
 
   useEffect(() => {
     fetchProfile()
@@ -24,21 +27,41 @@ const PlayerStats = ( player, setPlayer ) => {
         let keysAndValues = operatorsData.map((element) => {
           return Object.entries(element);
         });
-        console.log(keysAndValues[3].find(element => element[0] === "4:5"));
+
+        let wins = keysAndValues[0];
+        let losses = keysAndValues[1];
+        let kills = keysAndValues[2];
+        let timePlayed = keysAndValues[3];
+
+        console.log(kills);
+        let counter = 0;
+        let favoriteKillsOperator = 0;
+        for (let i = 0; i < kills.length; i++) {
+          if (kills[i][1] > counter) {
+            counter = kills[i][1];
+            favoriteKillsOperator = kills[i];
+          }
+          else {
+            console.log("plus petit");
+          }
+        }
 
         let favoriteOperatorResult = keysAndValues.map((element) => {
-          return element.find(a => a[0] === "4:5");
+          return element.find(a => a[0] === favoriteKillsOperator[0]);
         });
-        console.log("Operator wins :" + favoriteOperatorResult[0][1]);
-        console.log("Operator losses :" + favoriteOperatorResult[1][1]);
-        console.log("Operator kills :" + favoriteOperatorResult[2][1]);
-        console.log("Operator deaths :" + favoriteOperatorResult[3][1]);
-        console.log("Operator time :" + favoriteOperatorResult[4][1]);
-
-        console.log(operatorsData);
+        console.log(favoriteOperatorResult);
+        setFavoriteOperator(favoriteOperatorResult);
+        // console.log("Operator wins :" + favoriteOperatorResult[0][1]);
+        // console.log("Operator losses :" + favoriteOperatorResult[1][1]);
+        // console.log("Operator kills :" + favoriteOperatorResult[2][1]);
+        // console.log("Operator deaths :" + favoriteOperatorResult[3][1]);
+        // console.log("Operator time :" + favoriteOperatorResult[4][1]);
 
         //      Search deaths with the key
 
+        let opStats = op.find(a => a.id === favoriteOperatorResult[0][0]);
+        console.log(opStats.Operator);
+        setOperatorInfo(opStats);
         setOperators(operatorsData);
         setPlayerProile(playerData);
       })
@@ -104,6 +127,8 @@ const PlayerStats = ( player, setPlayer ) => {
                   <p className="smallStatsItem">Wins: {playerProfile.ranked.EU_wins}</p>
                   <p className="smallStatsItem">Losses: {playerProfile.ranked.EU_losses}</p>
                 </div>
+                <h4>Favorite operator : {operatorInfo.Operator}</h4>
+                <p>Kills : {favoriteOperator[2][1]} Deaths : {favoriteOperator[3][1]}</p>
               </div>
             </div>
           </div>
