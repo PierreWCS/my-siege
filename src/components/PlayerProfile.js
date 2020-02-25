@@ -6,6 +6,7 @@ import RanksBySeason from "./RanksBySeason";
 
 const PlayerStats = ( player, setPlayer ) => {
   const [playerProfile, setPlayerProile] = useState(null);
+  const [operators, setOperators] = useState(null);
 
   useEffect(() => {
     fetchProfile()
@@ -18,7 +19,27 @@ const PlayerStats = ( player, setPlayer ) => {
       .then(data => {
         console.log(data);
         let playerData = data;
-        console.log(JSON.parse(data.operators));
+        let operatorsData = JSON.parse(data.operators);
+
+        let keysAndValues = operatorsData.map((element) => {
+          return Object.entries(element);
+        });
+        console.log(keysAndValues[3].find(element => element[0] === "4:5"));
+
+        let favoriteOperatorResult = keysAndValues.map((element) => {
+          return element.find(a => a[0] === "4:5");
+        });
+        console.log("Operator wins :" + favoriteOperatorResult[0][1]);
+        console.log("Operator losses :" + favoriteOperatorResult[1][1]);
+        console.log("Operator kills :" + favoriteOperatorResult[2][1]);
+        console.log("Operator deaths :" + favoriteOperatorResult[3][1]);
+        console.log("Operator time :" + favoriteOperatorResult[4][1]);
+
+        console.log(operatorsData);
+
+        //      Search deaths with the key
+
+        setOperators(operatorsData);
         setPlayerProile(playerData);
       })
   };
@@ -33,7 +54,11 @@ const PlayerStats = ( player, setPlayer ) => {
               {/*   Image name and Lvl    */}
 
               <div className="imgNameLvlContainer">
-                <img className="playerImageStats" src={`https://ubisoft-avatars.akamaized.net/${playerProfile.p_user}/default_146_146.png`} alt="player image"/>
+                <img
+                  className="playerImageStats"
+                     src={`https://ubisoft-avatars.akamaized.net/${playerProfile.p_user}/default_146_146.png`}
+                     alt="player profile picture"
+                />
                 <div className="nameAndLvl">
                   <h1 style={{ color: 'white' }}>{playerProfile.p_name}</h1>
                   <h4 style={{ color: 'white' }}>Level {playerProfile.p_level}</h4>
@@ -45,9 +70,21 @@ const PlayerStats = ( player, setPlayer ) => {
               <div>
                 <h2 style={{ color: 'white', margin: 0 }}>{ranks[playerProfile.p_currentrank + 2].name}</h2>
                 <div className="actualRankContainer">
-                  <img className="previousRank" src={ranks[playerProfile.p_currentrank + 1].image} alt=""/>
-                  <img className="actualRank" src={ranks[playerProfile.p_currentrank + 2].image} alt=""/>
-                  <img className="nextRank" src={ranks[playerProfile.p_currentrank + 3].image} alt=""/>
+                  <img
+                    className="previousRank"
+                    src={ranks[playerProfile.p_currentrank + 1].image}
+                    alt=""
+                  />
+                  <img
+                    className="actualRank"
+                    src={ranks[playerProfile.p_currentrank + 2].image}
+                    alt=""
+                  />
+                  <img
+                    className="nextRank"
+                    src={ranks[playerProfile.p_currentrank + 3].image}
+                    alt=""
+                  />
                 </div>
                 <div style={{ textAlign: 'center' }}>
                   <h3 style={{ color: 'white', margin: 0 }}>Current MMR {playerProfile.p_currentmmr}</h3>
