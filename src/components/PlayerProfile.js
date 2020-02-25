@@ -127,8 +127,9 @@ const PlayerStats = ( player, setPlayer ) => {
                   <p className="smallStatsItem">Wins: {playerProfile.ranked.EU_wins}</p>
                   <p className="smallStatsItem">Losses: {playerProfile.ranked.EU_losses}</p>
                 </div>
+                <img src={`https://r6tab.com/images/operators/${favoriteOperator[0][0].replace(':', '-')}.png?`} alt=""/>
                 <h4>Favorite operator : {operatorInfo.Operator}</h4>
-                <p>Kills : {favoriteOperator[2][1]} Deaths : {favoriteOperator[3][1]}</p>
+                <p>Kills : {favoriteOperator[2][1]} Deaths : {favoriteOperator[3][1]} Ratio : {Math.round(favoriteOperator[2][1] / favoriteOperator[3][1])}</p>
               </div>
             </div>
           </div>

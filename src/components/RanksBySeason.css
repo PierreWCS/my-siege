@@ -10,6 +10,11 @@
     margin: 25px;
 }
 
+.titleSeason {
+    margin: 0 15px 15px 25px;
+    color: whitesmoke;
+}
+
 .seasonsRank {
     background-color: #282c34;
     width: 90%;
