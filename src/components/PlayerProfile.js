@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCrosshairs, faSkullCrossbones} from '@fortawesome/free-solid-svg-icons';
 import Axios from 'axios';
 import './PlayerProfile.css';
 import ranks from './datas/ranks';
 import op from './datas/operators';
 import RanksBySeason from "./RanksBySeason";
 
-const PlayerStats = ( player, setPlayer ) => {
+const PlayerStats = (player, setPlayer) => {
   const [playerProfile, setPlayerProile] = useState(null);
   const [operators, setOperators] = useState(null);
   const [favoriteOperator, setFavoriteOperator] = useState(null);
@@ -40,8 +42,7 @@ const PlayerStats = ( player, setPlayer ) => {
           if (kills[i][1] > counter) {
             counter = kills[i][1];
             favoriteKillsOperator = kills[i];
-          }
-          else {
+          } else {
             console.log("plus petit");
           }
         }
@@ -79,19 +80,19 @@ const PlayerStats = ( player, setPlayer ) => {
               <div className="imgNameLvlContainer">
                 <img
                   className="playerImageStats"
-                     src={`https://ubisoft-avatars.akamaized.net/${playerProfile.p_user}/default_146_146.png`}
-                     alt="player profile picture"
+                  src={`https://ubisoft-avatars.akamaized.net/${playerProfile.p_user}/default_146_146.png`}
+                  alt="player profile picture"
                 />
                 <div className="nameAndLvl">
-                  <h1 style={{ color: 'white' }}>{playerProfile.p_name}</h1>
-                  <h4 style={{ color: 'white' }}>Level {playerProfile.p_level}</h4>
+                  <h1 style={{color: 'white'}}>{playerProfile.p_name}</h1>
+                  <h4 style={{color: 'white'}}>Level {playerProfile.p_level}</h4>
                 </div>
               </div>
 
               {/*     Actual MMR      */}
 
               <div>
-                <h2 style={{ color: 'white', margin: 0 }}>{ranks[playerProfile.p_currentrank + 2].name}</h2>
+                <h2 style={{color: 'white', margin: 0}}>{ranks[playerProfile.p_currentrank + 2].name}</h2>
                 <div className="actualRankContainer">
                   <img
                     className="previousRank"
@@ -109,15 +110,15 @@ const PlayerStats = ( player, setPlayer ) => {
                     alt=""
                   />
                 </div>
-                <div style={{ textAlign: 'center' }}>
-                  <h3 style={{ color: 'white', margin: 0 }}>Current MMR {playerProfile.p_currentmmr}</h3>
+                <div style={{textAlign: 'center'}}>
+                  <h3 style={{color: 'white', margin: 0}}>Current MMR {playerProfile.p_currentmmr}</h3>
                 </div>
               </div>
             </div>
             <div className="rankedStatsContainer">
-              <RanksBySeason playerProfile={playerProfile} />
+              <RanksBySeason playerProfile={playerProfile}/>
               <div className="rankedStatsSection">
-                <h1>Ranked stats</h1>
+                <h1 className="titleSection">Ranked stats</h1>
                 <h4>General ranked KD: {playerProfile.kd / 100}</h4>
                 <div className="statsRankedSmallContainer">
                   <p className="smallStatsItem">Kills: {playerProfile.ranked.EU_kills}</p>
@@ -127,9 +128,14 @@ const PlayerStats = ( player, setPlayer ) => {
                   <p className="smallStatsItem">Wins: {playerProfile.ranked.EU_wins}</p>
                   <p className="smallStatsItem">Losses: {playerProfile.ranked.EU_losses}</p>
                 </div>
-                <img src={`https://r6tab.com/images/operators/${favoriteOperator[0][0].replace(':', '-')}.png?`} alt=""/>
+                <img src={`https://r6tab.com/images/operators/${favoriteOperator[0][0].replace(':', '-')}.png?`}
+                     alt="favorite operator"/>
                 <h4>Favorite operator : {operatorInfo.Operator}</h4>
-                <p>Kills : {favoriteOperator[2][1]} Deaths : {favoriteOperator[3][1]} Ratio : {Math.round(favoriteOperator[2][1] / favoriteOperator[3][1])}</p>
+                <p className="favoriteOperator">
+                  <FontAwesomeIcon icon={faCrosshairs} className="iconKillsDeaths fa-2x"/> : {favoriteOperator[2][1]}
+                  <FontAwesomeIcon icon={faSkullCrossbones} className="iconKillsDeaths fa-2x"/> {favoriteOperator[3][1]}
+                </p>
+                <p>Ratio : {Math.round(favoriteOperator[2][1] / favoriteOperator[3][1] * 100) / 100}</p>
               </div>
             </div>
           </div>

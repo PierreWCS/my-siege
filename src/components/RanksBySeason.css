@@ -11,8 +11,12 @@
 }
 
 .titleSeason {
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 18px;
     margin: 0 15px 15px 25px;
-    color: whitesmoke;
+    background-color: #B2B2B2;
 }
 
 .seasonsRank {

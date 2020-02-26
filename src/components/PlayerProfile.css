@@ -10,7 +10,8 @@
 
 .playerStatsInfoContainer {
     display: flex;
-    width: 70%;
+    height: 90vh;
+    width: 80%;
     flex-direction: column;
     align-items: center;
 }
@@ -75,6 +76,14 @@
     justify-content: space-between;
 }
 
+.titleSection {
+    padding: 15px;
+    box-sizing: border-box;
+    background-color: #B2B2B2;
+    width: 100%;
+    color: black;
+}
+
 .rankedStatsSection {
     color: whitesmoke;
     display: flex;
@@ -89,9 +98,20 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    justify-content: center;
 }
 
 .smallStatsItem {
     margin: 10px 25px 0 25px;
+}
+
+.favoriteOperator {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.iconKillsDeaths {
+    margin: 0 15px 0 15px;
+    color: whitesmoke;
 }
