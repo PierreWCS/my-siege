@@ -73,14 +73,14 @@
 .rankedStatsContainer {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .titleSection {
     padding: 15px;
     box-sizing: border-box;
     background-color: #B2B2B2;
-    width: 100%;
+    width: 80%;
     color: black;
 }
 

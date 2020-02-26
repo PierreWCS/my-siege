@@ -5,14 +5,14 @@
     flex-direction: column;
     align-items: flex-start;
     overflow: auto;
-    height: 350px;
-    width: 450px;
+    height: 550px;
+    width: 30%;
     margin: 25px;
 }
 
 .titleSeason {
     padding: 15px;
-    width: 100%;
+    width: 80%;
     box-sizing: border-box;
     font-size: 18px;
     margin: 0 15px 15px 25px;

@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSearch} from '@fortawesome/free-solid-svg-icons';
-import './R6stats.css';
+import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import "./R6stats.css";
 import axios from "axios";
 import PlayerProfile from "./PlayerProfile";
 
@@ -11,7 +11,7 @@ const R6stats = () => {
   const [playerSelected, setPlayerSelected] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     console.log(event.target.value);
     setPlayerName(event.target.value);
   };
@@ -20,7 +20,8 @@ const R6stats = () => {
     if (playerName && playerName.length > 3) {
       setLoading(true);
       let apiUrl = `https://r6tab.com/api/search.php?platform=uplay&search=${playerName}`;
-      axios.get(apiUrl)
+      axios
+        .get(apiUrl)
         .then(result => result.data)
         .then(data => {
           console.log(data);
@@ -28,10 +29,10 @@ const R6stats = () => {
           if (players) {
             if (players.length < 15) {
               setPlayersProposition(players);
-              setLoading(false)
+              setLoading(false);
             }
           }
-        })
+        });
     }
   };
   useEffect(() => {
@@ -50,50 +51,63 @@ const R6stats = () => {
           }}
         />
         <p className="newSearchText">New search</p>
-        {
-          playerSelected ?
-            <PlayerProfile
-              player={playerSelected}
-              setPlayer={setPlayerSelected}
-            />
-            :
-            <label className="searchPlayerContainerLabel" htmlFor="playerName">
-              <h1>Search a player</h1>
-              <div className="inputAndButtonSearchPlayer">
-                <div className="inputAndButtonRow">
-                  <input onChange={handleChange} placeholder="Player name ..." className="searchPlayerInput" type="text"
-                         id="playerName"/>
-                </div>
-                {
-                  playersProposition ?
-                    <div className="propositionPlayerSearchContainer">
-                      {playersProposition.map((player) => {
-                        return (
-                          <div className="playerCard" onClick={() => {
-                            setPlayerSelected(player);
-                          }}>
-                            <img className="playerImage"
-                                 src={`https://ubisoft-avatars.akamaized.net/${player.p_user}/default_146_146.png`}
-                                 alt="player image"/>
-                            <h3 style={{color: 'white'}}>{player.p_name}</h3>
-                            <h3 style={{color: 'white'}}>lvl. {player.p_level}</h3>
-                          </div>
-                        )
-                      })}
-                    </div>
-                    : null
-                }
+        {playerSelected ? (
+          <PlayerProfile
+            player={playerSelected}
+            setPlayer={setPlayerSelected}
+          />
+        ) : (
+          <label className="searchPlayerContainerLabel" htmlFor="playerName">
+            <h1>Search a player</h1>
+            <div className="inputAndButtonSearchPlayer">
+              <div className="inputAndButtonRow">
+                <input
+                  onChange={handleChange}
+                  placeholder="Player name ..."
+                  className="searchPlayerInput"
+                  type="text"
+                  id="playerName"
+                />
               </div>
-            </label>
-        }
-        {
-          loading ?
-            <img src={require('./images/logoSiege.png')} alt="loading ..." className='loadingImage'/>
-            : null
-        }
+              {playersProposition ? (
+                <div className="propositionPlayerSearchContainer">
+                  {playersProposition.map(player => {
+                    return (
+                      <div
+                        key={player.id}
+                        className="playerCard"
+                        onClick={() => {
+                          setPlayerSelected(player);
+                        }}
+                      >
+                        <img
+                          className="playerImage"
+                          src={`https://ubisoft-avatars.akamaized.net/${player.p_user}/default_146_146.png`}
+                          alt="player image"
+                        />
+                        <h3 style={{ color: "white" }}>{player.p_name}</h3>
+                        <h3 style={{ color: "white" }}>
+                          lvl. {player.p_level}
+                        </h3>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : null}
+            </div>
+          </label>
+        )}
+        {loading ? (
+          <img
+          // eslint-disable-next-line no-undef
+            src={require("./images/logoSiege.png")}
+            alt="loading ..."
+            className="loadingImage"
+          />
+        ) : null}
       </div>
     </div>
-  )
+  );
 };
 
 export default R6stats;
