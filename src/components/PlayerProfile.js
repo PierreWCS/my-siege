@@ -148,7 +148,7 @@ const PlayerStats = player => {
             <RanksBySeason playerProfile={playerProfile} />
             <div className="rankedStatsSection">
               <h1 className="titleSection">Current season ranked stats</h1>
-              <h4>General ranked KD: {playerProfile.kd / 100}</h4>
+              <h2 style={{ margin: '15px' }}>Ranked KD: {playerProfile.kd / 100}</h2>
               <div className="statsRankedSmallContainer">
                 <p className="smallStatsItem">
                   Kills: {playerProfile.ranked.EU_kills}
