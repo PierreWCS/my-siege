@@ -105,10 +105,27 @@
     margin: 10px 25px 0 25px;
 }
 
+/*          Favorite operators          */
+
+
+.favoriteOperators {
+    display: flex;
+    flex-direction: row;
+}
+
 .favoriteOperator {
     display: flex;
     align-items: center;
+    justify-content: center;
     font-size: 18px;
+}
+
+.titleFavoriteOperator {
+    margin: 25px;
+}
+
+.favoriteOperatorImage {
+    width: 100px;
 }
 
 .iconKillsDeaths {

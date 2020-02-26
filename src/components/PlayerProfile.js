@@ -147,7 +147,7 @@ const PlayerStats = player => {
           <div className="rankedStatsContainer">
             <RanksBySeason playerProfile={playerProfile} />
             <div className="rankedStatsSection">
-              <h1 className="titleSection">Ranked stats</h1>
+              <h1 className="titleSection">Current season ranked stats</h1>
               <h4>General ranked KD: {playerProfile.kd / 100}</h4>
               <div className="statsRankedSmallContainer">
                 <p className="smallStatsItem">
@@ -168,10 +168,13 @@ const PlayerStats = player => {
 
               {/*       Player's favorite attacker and defender       */}
 
+              {/*       Favorite attacker     */}
+
               <div className="favoriteOperators">
                 <div className="favoriteAttacker">
-                  {/*<h2>Favorite attacker: {op.find((element) => element.id === favAttacker)}</h2>*/}
+                  <h2 className="titleFavoriteOperator">Favorite attacker: {favAttacker[5].Operator}</h2>
                   <img
+                    className="favoriteOperatorImage"
                     src={`https://r6tab.com/images/operators/${favAttacker[5].id.replace(
                       ":",
                       "-"
@@ -183,51 +186,53 @@ const PlayerStats = player => {
                       icon={faCrosshairs}
                       className="iconKillsDeaths fa-2x"
                     />{" "}
-                    : {favoriteOperator[2][1]}
+                    : {favAttacker[2][1]}
                     <FontAwesomeIcon
                       icon={faSkullCrossbones}
                       className="iconKillsDeaths fa-2x"
                     />{" "}
-                    {favoriteOperator[3][1]}
+                    {favAttacker[3][1]}
                   </p>
                   <p>
                     Ratio :{" "}
                     {Math.round(
-                      (favoriteOperator[2][1] / favoriteOperator[3][1]) * 100
+                      (favAttacker[2][1] / favAttacker[3][1]) * 100
                     ) / 100}
                   </p>
                 </div>
+
+                {/*       Favorite defender       */}
+
                 <div className="favoriteDefender">
-                  <h2>Favorite defender</h2>
+                  <h2 className="titleFavoriteOperator">Favorite defender {favDefender[5].Operator}</h2>
                   <img
+                    className="favoriteOperatorImage"
                     src={`https://r6tab.com/images/operators/${favDefender[5].id.replace(
                       ":",
                       "-"
                     )}.png?`}
                     alt="favorite operator"
                   />
+                  <p className="favoriteOperator">
+                    <FontAwesomeIcon
+                      icon={faCrosshairs}
+                      className="iconKillsDeaths fa-2x"
+                    />{" "}
+                    : {favDefender[2][1]}
+                    <FontAwesomeIcon
+                      icon={faSkullCrossbones}
+                      className="iconKillsDeaths fa-2x"
+                    />{" "}
+                    {favDefender[3][1]}
+                  </p>
+                  <p>
+                    Ratio :{" "}
+                    {Math.round(
+                      (favDefender[2][1] / favDefender[3][1]) * 100
+                    ) / 100}
+                  </p>
                 </div>
               </div>
-
-              <h4>Favorite operator : {operatorInfo.Operator}</h4>
-              <p className="favoriteOperator">
-                <FontAwesomeIcon
-                  icon={faCrosshairs}
-                  className="iconKillsDeaths fa-2x"
-                />{" "}
-                : {favoriteOperator[2][1]}
-                <FontAwesomeIcon
-                  icon={faSkullCrossbones}
-                  className="iconKillsDeaths fa-2x"
-                />{" "}
-                {favoriteOperator[3][1]}
-              </p>
-              <p>
-                Ratio :{" "}
-                {Math.round(
-                  (favoriteOperator[2][1] / favoriteOperator[3][1]) * 100
-                ) / 100}
-              </p>
             </div>
           </div>
         </div>
