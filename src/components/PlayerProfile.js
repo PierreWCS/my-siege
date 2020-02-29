@@ -4,6 +4,7 @@ import "./PlayerProfile.css";
 import ranks from "./datas/ranks";
 import op from "./datas/operators";
 import OverviewRanked from "./OverviewRanked";
+import OperatorStats from "./OperatorsStats";
 
 const PlayerStats = player => {
   const [playerProfile, setPlayerProile] = useState(null);
@@ -11,8 +12,6 @@ const PlayerStats = player => {
   const [operators, setOperators] = useState(null);
   const [favDefender, setFavDefender] = useState(null);
   const [favAttacker, setFavAttacker] = useState(null);
-  const [favoriteOperator, setFavoriteOperator] = useState(null);
-  const [operatorInfo, setOperatorInfo] = useState(null);
 
   useEffect(() => {
     fetchProfile();
@@ -38,13 +37,23 @@ const PlayerStats = player => {
           return Object.entries(element);
         });
 
+        // Creating array of operators
+        console.log(keysAndValues);
+        let stockOperators = keysAndValues[0].map(element => {
+          keysAndValues.find(a => a[0] === element[0])
+        });
+        console.log(stockOperators);
+
+        // Searching the favorite attacker
+
         let stockAttackerStats = keysAndValues.map(element => {
           return element.find(a => a[0] === playerData.favattacker);
         });
         let attackerStats = op.find(a => a.id === stockAttackerStats[0][0]);
         stockAttackerStats.push(attackerStats);
         setFavAttacker(stockAttackerStats);
-        console.log(stockAttackerStats);
+
+        // Searching the favorite defender
 
         let stockDefenderStats = keysAndValues.map(element => {
           return element.find(a => a[0] === playerData.favdefender);
@@ -53,11 +62,11 @@ const PlayerStats = player => {
         stockDefenderStats.push(defenderStats);
         setFavDefender(stockDefenderStats);
 
-        console.log(stockDefenderStats[5].Operator);
 
-        let kills = keysAndValues[2];
 
         // Finding the player's favorite operator by the selector: Max kills
+        let kills = keysAndValues[2];
+
         let counter = 0;
         let favoriteKillsOperator = 0;
         for (let i = 0; i < kills.length; i++) {
@@ -73,12 +82,10 @@ const PlayerStats = player => {
         let favoriteOperatorResult = keysAndValues.map(element => {
           return element.find(a => a[0] === favoriteKillsOperator[0]);
         });
-        setFavoriteOperator(favoriteOperatorResult);
 
         // Getting the operator's data in the JSON
         let opStats = op.find(a => a.id === favoriteOperatorResult[0][0]);
         console.log(opStats.Operator);
-        setOperatorInfo(opStats);
         setPlayerProile(playerData);
       });
   };
@@ -140,7 +147,7 @@ const PlayerStats = player => {
           {/*       Ranked section     */}
 
           <OverviewRanked playerProfile={playerProfile} favAttacker={favAttacker} favDefender={favDefender} />
-
+          {/*<OperatorStats playerProfile={playerProfile} />*/}
         </div>
       ) : null}
     </div>

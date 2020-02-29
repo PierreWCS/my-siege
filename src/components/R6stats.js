@@ -83,7 +83,7 @@ const R6stats = () => {
                         <img
                           className="playerImage"
                           src={`https://ubisoft-avatars.akamaized.net/${player.p_user}/default_146_146.png`}
-                          alt="player image"
+                          alt="player"
                         />
                         <h3 style={{ color: "white" }}>{player.p_name}</h3>
                         <h3 style={{ color: "white" }}>
