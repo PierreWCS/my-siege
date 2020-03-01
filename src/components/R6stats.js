@@ -24,7 +24,6 @@ const R6stats = () => {
         .get(apiUrl)
         .then(result => result.data)
         .then(data => {
-          console.log(data);
           let players = data.results;
           if (players) {
             if (players.length < 15) {

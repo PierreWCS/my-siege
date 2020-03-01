@@ -4,7 +4,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCrosshairs, faSkullCrossbones} from "@fortawesome/free-solid-svg-icons";
 
 const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
-  console.log(playerProfile, favDefender, favAttacker);
   return (
     <div className="rankedStatsContainer">
       <RanksBySeason playerProfile={playerProfile} />

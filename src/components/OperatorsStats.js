@@ -1,20 +1,21 @@
 import React from 'react';
 import operatorsData from './datas/operators';
 
-const OperatorStats = ({ playerProfile, operators }) => {
-  console.log(operators);
+const OperatorStats = ({ operators }) => {
+  console.log("Array of operators :", operators);
   return (
     <div>
       <h1>All operators stats</h1>
       {
-        operators[0].map((op, key) => {
-          let opStats = operatorsData.find(element => element.id === op[0]);
-          return (
-            <div key={key}>
-              <p>{opStats.Operator}</p>
-            </div>
-          )
-        })
+        operators ?
+          operators.map((op, key) => {
+            return (
+              <div key={key}>
+                <h3>{op}</h3>
+              </div>
+            )
+          })
+          : null
       }
     </div>
   )

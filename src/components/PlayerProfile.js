@@ -24,10 +24,8 @@ const PlayerStats = player => {
     Axios.get(apiUrl)
       .then(result => result.data)
       .then(data => {
-        console.log(data);
         let playerData = data;
         let operatorsData = JSON.parse(data.operators);
-        console.log(operatorsData);
 
         // Taking favorite attacker and defender
         setFavAttacker(playerData.favattacker);
@@ -38,11 +36,20 @@ const PlayerStats = player => {
         });
 
         // Creating array of operators
-        console.log(keysAndValues);
-        let stockOperators = keysAndValues[0].map(element => {
-          keysAndValues.find(a => a[0] === element[0])
+        let obj = [];
+
+        keysAndValues.forEach(currentTab => {
+          currentTab.forEach(el => {
+            if (Object.keys(obj).includes(el[0]) ) {
+              obj[el[0]].push(el[1]);
+            } else {
+              obj[el[0]] = [el[1]];
+            }
+          })
         });
-        console.log(stockOperators);
+
+        console.log(obj);
+        setOperators(obj);
 
         // Searching the favorite attacker
 
@@ -147,7 +154,7 @@ const PlayerStats = player => {
           {/*       Ranked section     */}
 
           <OverviewRanked playerProfile={playerProfile} favAttacker={favAttacker} favDefender={favDefender} />
-          {/*<OperatorStats playerProfile={playerProfile} />*/}
+          <OperatorStats operators={operators} />
         </div>
       ) : null}
     </div>
