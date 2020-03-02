@@ -11,6 +11,7 @@ const PlayerStats = player => {
   const [operators, setOperators] = useState(null);
   const [favDefender, setFavDefender] = useState(null);
   const [favAttacker, setFavAttacker] = useState(null);
+  const [page, setPage] = useState("overview");
 
   useEffect(() => {
     fetchProfile();
@@ -35,11 +36,9 @@ const PlayerStats = player => {
           return Object.entries(element);
         });
 
-        // Creating array of operators
+        // Creating array of operators more properly than the API
         let obj = {};
-
         const statsName = ["wins", "losses", "kills", "deaths", "time_played"];
-
         keysAndValues.forEach((currentTab, index) => {
           currentTab.forEach(operatorValue => {
             const [key, value] = operatorValue;
@@ -50,8 +49,6 @@ const PlayerStats = player => {
             }
           });
         });
-
-        console.log(obj);
         setOperators(obj);
 
         // Searching the favorite attacker
@@ -152,14 +149,29 @@ const PlayerStats = player => {
             </div>
           </div>
 
-          {/*       Ranked section     */}
+          {/*       Content      */}
 
-          <OverviewRanked
-            playerProfile={playerProfile}
-            favAttacker={favAttacker}
-            favDefender={favDefender}
-          />
-          <OperatorStats operators={operators} />
+          <div className="navigationContainer">
+            <h2
+              className={`linkNavigation ${page === "overview" ? "activeLink" : null}`}
+              onClick={() => setPage("overview")}
+            >Overview</h2>
+            <h2
+              className={`linkNavigation ${page === "operators" ? "activeLink" : null}`}
+              onClick={() => setPage("operators")}
+            >Operators</h2>
+          </div>
+
+          {
+            page === "overview" ?
+              <OverviewRanked
+                playerProfile={playerProfile}
+                favAttacker={favAttacker}
+                favDefender={favDefender}
+              />
+              :
+              <OperatorStats operators={operators} />
+          }
         </div>
       ) : null}
     </div>

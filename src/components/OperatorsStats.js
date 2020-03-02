@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import operatorsData from "./datas/operators";
 import "./OperatorStats.css";
+import OperatorCard from "./OperatorCard";
 
 const OperatorStats = ({ operators }) => {
+  const [displayChoice, setDisplayChoice] = useState("attackers");
   const [playerOperators, setPlayerOperators] = useState();
-  console.log("Array of operators :", operators);
+  const [playerAttackers, setPlayerAttackers] = useState();
+  const [playerDefenders, setPlayerDefenders] = useState();
 
   useEffect(() => {
     displayOperatorsStats();
@@ -14,7 +17,6 @@ const OperatorStats = ({ operators }) => {
     for (let key in operators) {
       operatorsData.find(e => {
         if (e.id === key) {
-          console.log(e.Operator);
           operators[key].name = e.Operator;
           if (operators[key][2] && operators[key][3]) {
             operators[key].winrate = (
@@ -27,16 +29,36 @@ const OperatorStats = ({ operators }) => {
             ).toFixed(2);
           }
           operators[key].type = e.Type;
+          operators[key].id = e.id;
         }
       });
-      console.log(key + ":" + operators[key]);
     }
+    let attackers = [];
+    let defenders = [];
+    Object.keys(operators).map(key => {
+      if (operators[key].type === "Attacker") {
+        attackers.push(operators[key]);
+        console.log("I'm an attacker" + operators[key].name)
+      }
+      else {
+        defenders.push(operators[key])
+      }
+    });
+    setPlayerAttackers(attackers);
+    setPlayerDefenders(defenders);
     setPlayerOperators(operators);
+
+    console.log(attackers);
+    console.log(defenders);
   };
 
+
   return (
-    <div>
-      <h1>All operators stats</h1>
+    <div className="operatorsStatsContainer">
+      <div>
+        <h1 className="titleOperators" onClick={() => setDisplayChoice("attackers")}>Attackers</h1>
+        <h1 className="titleOperators" onClick={() => setDisplayChoice("defenders")}>Defenders</h1>
+      </div>
       <div className="operatorsHeader">
         <h1>Operator</h1>
         <h3>Wins</h3>
@@ -46,67 +68,30 @@ const OperatorStats = ({ operators }) => {
         <h3>Deaths</h3>
         <h3>K/D</h3>
       </div>
-      {playerOperators
-        ? Object.keys(playerOperators).map(key => {
-            if (playerOperators[key].name) {
-              return (
-                <div className="operatorCard" key={key}>
-                  <div className="operatorImageAndName">
-                    <img
-                      className="favoriteOperatorImage"
-                      src={`https://r6tab.com/images/operators/${key.replace(
-                        ":",
-                        "-"
-                      )}.png?`}
-                      alt="favorite operator"
-                    />
-                    <h4 className="operatorDataName">
-                      {playerOperators[key].name}
-                    </h4>
-                  </div>
-                  <h5 className="operatorData">
-                    {playerOperators[key][0] &&
-                    playerOperators[key][0][0] === "wins"
-                      ? playerOperators[key][0][1]
-                      : 0}
-                  </h5>
-                  <h5 className="operatorData">
-                    {playerOperators[key][1] &&
-                    playerOperators[key][1][0] === "losses"
-                      ? playerOperators[key][1][1]
-                      : 0}
-                  </h5>
-                  <h5 className="operatorData">
-                    {playerOperators[key][1] &&
-                    playerOperators[key][1][0] === "losses"
-                      ? playerOperators[key].winrate
-                      : 0}
-                  </h5>
-                  <h5 className="operatorData">
-                    {playerOperators[key][2] &&
-                    playerOperators[key][2][0] === "kills"
-                      ? playerOperators[key][2][1]
-                      : 0}
-                  </h5>
-                  <h5 className="operatorData">
-                    {playerOperators[key][3] &&
-                    playerOperators[key][3][0] === "deaths"
-                      ? playerOperators[key][3][1]
-                      : 0}
-                  </h5>
-                  <h5 className="operatorData">
-                    {playerOperators[key][3] &&
-                    playerOperators[key][3][0] === "deaths"
-                      ? playerOperators[key].kd
-                      : 0}
-                  </h5>
-                </div>
-              );
-            } else {
-              console.log(`Error on : ${key}`);
-            }
-          })
-        : null}
+      <div className="operatorsResult">
+        {
+          playerOperators && displayChoice === "attackers" ?
+            playerAttackers.map((operator, key) => {
+              if (operator.name) {
+                return (
+                  <OperatorCard key={key} operator={operator} />
+                )
+              }
+            })
+            : null
+        }
+        {
+          playerOperators && displayChoice === "defenders" ?
+            playerDefenders.map((operator, key) => {
+              if (operator.name) {
+                return (
+                  <OperatorCard key={key} operator={operator} />
+                )
+              }
+            })
+            : null
+        }
+      </div>
     </div>
   );
 };
