@@ -36,16 +36,19 @@ const PlayerStats = player => {
         });
 
         // Creating array of operators
-        let obj = [];
+        let obj = {};
 
-        keysAndValues.forEach(currentTab => {
-          currentTab.forEach(el => {
-            if (Object.keys(obj).includes(el[0]) ) {
-              obj[el[0]].push(el[1]);
+        const statsName = ["wins", "losses", "kills", "death", "time_played"]
+
+        keysAndValues.forEach((currentTab, index) => {
+          currentTab.forEach(operatorValue => {
+            const [key, value] = operatorValue;
+            if (Object.keys(obj).includes(key)) {
+              obj[key].push([ statsName[index], value]);
             } else {
-              obj[el[0]] = [el[1]];
+              obj[key] = [[statsName[index], value]];
             }
-          })
+          });
         });
 
         console.log(obj);
@@ -68,8 +71,6 @@ const PlayerStats = player => {
         let defenderStats = op.find(a => a.id === stockDefenderStats[0][0]);
         stockDefenderStats.push(defenderStats);
         setFavDefender(stockDefenderStats);
-
-
 
         // Finding the player's favorite operator by the selector: Max kills
         let kills = keysAndValues[2];
@@ -153,7 +154,11 @@ const PlayerStats = player => {
 
           {/*       Ranked section     */}
 
-          <OverviewRanked playerProfile={playerProfile} favAttacker={favAttacker} favDefender={favDefender} />
+          <OverviewRanked
+            playerProfile={playerProfile}
+            favAttacker={favAttacker}
+            favDefender={favDefender}
+          />
           <OperatorStats operators={operators} />
         </div>
       ) : null}
