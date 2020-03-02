@@ -4,7 +4,7 @@ Demo here:
 
 https://my-siege.netlify.com/
 
-
+Thanks to @Silaex
 
 ## Available Scripts
 
