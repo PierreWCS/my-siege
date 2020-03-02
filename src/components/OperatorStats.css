@@ -1,0 +1,32 @@
+.operatorCard {
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.operatorsHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: gray;
+}
+
+.operatorImageAndName {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 300px;
+}
+
+.operatorDataName {
+    width: 300px;
+}
+
+.operatorData {
+    box-sizing: border-box;
+    width: 200px;
+    padding: 10px;
+    background-color: rgba(23,197,131,0.8);
+}

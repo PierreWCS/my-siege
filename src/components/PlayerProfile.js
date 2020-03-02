@@ -8,7 +8,6 @@ import OperatorStats from "./OperatorsStats";
 
 const PlayerStats = player => {
   const [playerProfile, setPlayerProile] = useState(null);
-  // eslint-disable-next-line no-unused-vars
   const [operators, setOperators] = useState(null);
   const [favDefender, setFavDefender] = useState(null);
   const [favAttacker, setFavAttacker] = useState(null);
@@ -24,6 +23,7 @@ const PlayerStats = player => {
     Axios.get(apiUrl)
       .then(result => result.data)
       .then(data => {
+        console.log(data);
         let playerData = data;
         let operatorsData = JSON.parse(data.operators);
 
@@ -38,7 +38,7 @@ const PlayerStats = player => {
         // Creating array of operators
         let obj = {};
 
-        const statsName = ["wins", "losses", "kills", "death", "time_played"]
+        const statsName = ["wins", "losses", "kills", "deaths", "time_played"];
 
         keysAndValues.forEach((currentTab, index) => {
           currentTab.forEach(operatorValue => {
