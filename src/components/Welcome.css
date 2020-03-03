@@ -1,0 +1,46 @@
+
+
+.loadingScreenMainContainer {
+    background-image: url('./images/vigilBackground.jpg');
+    background-size: 100%;
+    width: 100%;
+    height: 100vh;
+}
+
+.welcomeMessage {
+    position: absolute;
+    color: white;
+    font-size: 74px;
+    top: 25%;
+    left: 42%;
+}
+
+.needStatsButton {
+    position: absolute;
+    color: white;
+    top: 75%;
+    border: solid 2px white;
+    background-color: transparent;
+    left: 46%;
+    padding: 25px;
+}
+.needStatsButton:hover {
+    animation: light-off 1s infinite;
+    cursor: pointer;
+}
+
+@keyframes light-off {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 5%;
+    }
+    from {
+        opacity: 5%;
+    }
+    to {
+        opacity: 100%;
+    }
+}
+

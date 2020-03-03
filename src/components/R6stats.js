@@ -4,6 +4,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./R6stats.css";
 import axios from "axios";
 import PlayerProfile from "./PlayerProfile";
+import Welcome from "./Welcome";
 
 const R6stats = () => {
   const [playersProposition, setPlayersProposition] = useState(null);
@@ -40,6 +41,7 @@ const R6stats = () => {
 
   return (
     <div className="r6statsMainContainer">
+      {/*<Welcome />*/}
       <div className="r6statsSearchPlayerContainer">
         <FontAwesomeIcon
           icon={faSearch}

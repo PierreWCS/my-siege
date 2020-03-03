@@ -1,5 +1,8 @@
 /*          Player profile overview          */
 
+/* Numbers font */
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One&display=swap');
+
 .playerStatsInfoContainer {
     background-color: rgba(50,50,50,0.9);
     width: 80%;

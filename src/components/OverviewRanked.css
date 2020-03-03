@@ -1,0 +1,27 @@
+/*          Style of the ranked overview            */
+
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One&display=swap');
+
+.rankedKD, .rankedWL, .smallStatsItem {
+    font-family: 'Black Ops One', cursive;
+}
+
+.rankedKD, .rankedWL {
+    margin: 5px;
+}
+
+.kdWLcontainer {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.rankedStatOverview {
+    font-size: 36px;
+    color: orange;
+}
+
+.statNumberOverviewRanked {
+    font-size: 32px;
+}
+

@@ -2,6 +2,7 @@ import React from 'react';
 import RanksBySeason from "./RanksBySeason";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCrosshairs, faSkullCrossbones} from "@fortawesome/free-solid-svg-icons";
+import './OverviewRanked.css';
 
 const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
   return (
@@ -9,21 +10,24 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
       <RanksBySeason playerProfile={playerProfile} />
       <div className="rankedStatsSection">
         <h1 className="titleSection">Current season ranked stats</h1>
-        <h2 style={{ margin: '15px' }}>Ranked KD: {playerProfile.kd / 100}</h2>
+        <div className="kdWLcontainer">
+          <h2 className="rankedKD">KD: <span className="rankedStatOverview">{(playerProfile.ranked.EU_kills / playerProfile.ranked.EU_deaths).toFixed(2)}</span></h2>
+          <h2 className="rankedWL">Winrate: <span className="rankedStatOverview">{(playerProfile.ranked.EU_wins / playerProfile.ranked.EU_losses).toFixed(2)}</span></h2>
+        </div>
         <div className="statsRankedSmallContainer">
           <p className="smallStatsItem">
-            Kills: {playerProfile.ranked.EU_kills}
+            KILLS: <span className="statNumberOverviewRanked">{playerProfile.ranked.EU_kills}</span>
           </p>
           <p className="smallStatsItem">
-            Deaths: {playerProfile.ranked.EU_deaths}
+            DEATHS: <span className="statNumberOverviewRanked">{playerProfile.ranked.EU_deaths}</span>
           </p>
         </div>
         <div className="statsRankedSmallContainer">
           <p className="smallStatsItem">
-            Wins: {playerProfile.ranked.EU_wins}
+            WINS: <span className="statNumberOverviewRanked">{playerProfile.ranked.EU_wins}</span>
           </p>
           <p className="smallStatsItem">
-            Losses: {playerProfile.ranked.EU_losses}
+            LOSSES: <span className="statNumberOverviewRanked">{playerProfile.ranked.EU_losses}</span>
           </p>
         </div>
 
