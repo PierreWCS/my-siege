@@ -5,7 +5,7 @@ import './RanksBySeason.css';
 const RanksBySeason = ({ playerProfile }) => {
   return (
     <div className="allSeasonsContainer">
-      <h1 className="titleSeason">Last seasons</h1>
+      <h1 className="titleSeason">LAST SEASONS</h1>
       <div className="seasonsRank">
         <img className="rankBySeasonImage" src={ playerProfile.season15rank > 0 ? ranks[playerProfile.season15rank + 2].image : ranks[0].image} alt="season rank"/>
         <div className="seasonNumberAndName">

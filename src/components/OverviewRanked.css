@@ -19,8 +19,48 @@
     color: black;
 }
 
+.operatorStatsSmallContainerDefender {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 20px 0 0 10px;
+}
+
+.operatorStatsSmallContainerAttacker {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 20px 10px 0 0;
+}
+
+.favoriteOperatorKillsAttacker {
+    margin: 5px 0 5px 0;
+}
+
+.favoriteOperatorDeathsAttacker {
+    margin: 5px 0 5px 0;
+}
+.favoriteOperatorRatioAttacker {
+    margin: 5px 0 5px 0;
+}
+
+.favoriteOperatorDefenderKills {
+    margin: 5px 0 5px 0;
+}
+
+.favoriteOperatorDeathsDefender {
+    margin: 5px 0 5px 0;
+}
+
+.favoriteOperatorRatioDefender {
+    margin: 5px 0 5px 0;
+}
+
 .favOperatorName {
-    color: #282c34;
+    font-family: Roboto;
+    color: white;
+    font-size: 32px;
+    margin: 5px;
 }
 
 .kdWLcontainer {
@@ -44,17 +84,17 @@
 
 .contentStatsOverviewRankedAttack {
     background-image: url('./images/AttackerNoBackground.png');
-    background-size: 100px;
+    background-size: 120px;
     background-repeat: no-repeat;
-    background-position: top 10px left 10px;
+    background-position: top 10px right 10px;
     display: flex;
     flex-direction: column;
 }
 
 .contentStatsOverviewRankedDefense {
     background-image: url('./images/defendersR6NoBackground.png');
-    background-size: 100px;
-    background-position: top 10px right 10px;
+    background-size: 120px;
+    background-position: top 10px left -15px;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;

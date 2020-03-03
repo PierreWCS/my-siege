@@ -155,11 +155,11 @@ const PlayerStats = player => {
             <h2
               className={`linkNavigation ${page === "overview" ? "activeLink" : null}`}
               onClick={() => setPage("overview")}
-            >Overview</h2>
+            >OVERVIEW</h2>
             <h2
               className={`linkNavigation ${page === "operators" ? "activeLink" : null}`}
               onClick={() => setPage("operators")}
-            >Operators</h2>
+            >OPERATORS</h2>
           </div>
 
           {/*       Content       */}
