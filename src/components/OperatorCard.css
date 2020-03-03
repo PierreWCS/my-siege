@@ -1,0 +1,10 @@
+.operatorCard {
+    font-family: Roboto;
+    background-color: lightgrey;
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+}

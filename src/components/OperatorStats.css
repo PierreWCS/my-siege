@@ -45,22 +45,14 @@
     height: 50px;
 }
 
-.operatorCard {
-    background-color: lightgrey;
-    margin: 2px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 90%;
-}
-
 .operatorsHeader {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
     background-color: gray;
     width: 90%;
+    padding: 10px;
 }
 
 .operatorsResult {
@@ -70,6 +62,14 @@
     flex-direction: column;
     align-items: center;
     overflow: auto;
+}
+
+.operatorHeaderItemOperator {
+    width: 200px;
+}
+
+.operatorHeaderItem {
+    width: 150px;
 }
 
 .operatorImageAndName {
@@ -87,5 +87,4 @@
     box-sizing: border-box;
     width: 150px;
     padding: 10px;
-    background-color: rgba(23, 197, 131, 0.8);
 }

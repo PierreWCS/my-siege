@@ -60,13 +60,13 @@ const OperatorStats = ({ operators }) => {
         <h1 className={`titleOperatorsDefense ${displayChoice === "defenders" ? "selectedDisplay" : null}`} onClick={() => setDisplayChoice("defenders")}><img className="attackDefendImage" alt="attackers" src={require('./images/defendersR6NoBackground.png')} />Defenders</h1>
       </div>
       <div className="operatorsHeader">
-        <h1>Operator</h1>
-        <h3>Wins</h3>
-        <h3>Losses</h3>
-        <h3>Winrate</h3>
-        <h3>Kills</h3>
-        <h3>Deaths</h3>
-        <h3>K/D</h3>
+        <h1 className="operatorHeaderItemOperator">Operator</h1>
+        <h3 className="operatorHeaderItem">Wins</h3>
+        <h3 className="operatorHeaderItem">Losses</h3>
+        <h3 className="operatorHeaderItem">Winrate</h3>
+        <h3 className="operatorHeaderItem" >Kills</h3>
+        <h3 className="operatorHeaderItem">Deaths</h3>
+        <h3 className="operatorHeaderItem">K/D</h3>
       </div>
       <div className="operatorsResult">
         {

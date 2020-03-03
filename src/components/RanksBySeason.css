@@ -1,5 +1,7 @@
 /*          Ranks by different seasons          */
 
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 .allSeasonsContainer {
     display: flex;
     flex-direction: column;
@@ -8,15 +10,17 @@
     height: 585px;
     width: 30%;
     margin: 25px;
+    font-family: Roboto;
 }
 
 .titleSeason {
     padding: 15px;
     width: 80%;
     box-sizing: border-box;
-    font-size: 18px;
+    font-size: 24px;
     margin: 0 15px 15px 25px;
     background-color: #B2B2B2;
+    font-family: 'Black Ops One', cursive;
 }
 
 .seasonsRank {
