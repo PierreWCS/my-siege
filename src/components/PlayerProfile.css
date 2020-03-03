@@ -146,20 +146,21 @@
 .favoriteOperators {
     display: flex;
     flex-direction: row;
+    padding: 15px;
 }
 
 .favoriteAttacker {
     background-color: dodgerblue;
-    height: 340px;
-    /*background-image: url("https://cdn.r6stats.com/full-figures/vigil_figure.png");*/
-    /*background-position: top;*/
-    /*background-size: contain;*/
-    /*background-repeat: no-repeat;*/
+    height: 300px;
+    width: 280px;
+    margin: 5px;
 }
 
 .favoriteDefender {
     background-color: orangered;
-    height: 340px;
+    height: 300px;
+    width: 280px;
+    margin: 5px;
 }
 
 .favoriteOperator {
