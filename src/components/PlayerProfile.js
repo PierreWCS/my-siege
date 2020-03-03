@@ -121,7 +121,7 @@ const PlayerStats = player => {
             {/*     Actual MMR      */}
 
             <div>
-              <h2 style={{ color: "white", margin: 0 }}>
+              <h2 className="playerRanks" style={{ color: "white", margin: 0 }}>
                 {ranks[playerProfile.p_currentrank + 2].name}
               </h2>
               <div className="actualRankContainer">
@@ -141,7 +141,7 @@ const PlayerStats = player => {
                   alt=""
                 />
               </div>
-              <div style={{ textAlign: "center" }}>
+              <div className="currentMmrPlayer" style={{ textAlign: "center" }}>
                 <h3 style={{ color: "white", margin: 0 }}>
                   Current MMR {playerProfile.p_currentmmr}
                 </h3>
@@ -149,7 +149,7 @@ const PlayerStats = player => {
             </div>
           </div>
 
-          {/*       Content      */}
+          {/*       Content navigation      */}
 
           <div className="navigationContainer">
             <h2
@@ -161,6 +161,8 @@ const PlayerStats = player => {
               onClick={() => setPage("operators")}
             >Operators</h2>
           </div>
+
+          {/*       Content       */}
 
           {
             page === "overview" ?

@@ -7,7 +7,7 @@
 }
 
 .rankedKD, .rankedWL {
-    margin: 5px;
+    margin: 0 15px 0 15px;
 }
 
 .contentStatsOverviewRankedDefense p, .contentStatsOverviewRankedAttack p {
@@ -25,7 +25,7 @@
 
 .kdWLcontainer {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     width: 80%;
 }
 

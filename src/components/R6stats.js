@@ -59,7 +59,7 @@ const R6stats = () => {
           />
         ) : (
           <label className="searchPlayerContainerLabel" htmlFor="playerName">
-            <h1>Search a player</h1>
+            <h1>Type the name of your target</h1>
             <div className="inputAndButtonSearchPlayer">
               <div className="inputAndButtonRow">
                 <input

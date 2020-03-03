@@ -34,10 +34,11 @@
     color: whitesmoke;
     width: 50%;
     padding: 10px;
+    box-sizing: border-box;
 }
 
 .selectedDisplay {
-    border: solid 2px black;
+    border: solid 4px lightgray;
 }
 
 .attackDefendImage {
