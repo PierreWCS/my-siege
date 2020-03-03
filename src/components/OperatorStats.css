@@ -58,7 +58,7 @@
 .operatorsResult {
     display: flex;
     width: 100%;
-    height: 400px;
+    height: 360px;
     flex-direction: column;
     align-items: center;
     overflow: auto;
