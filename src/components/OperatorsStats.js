@@ -55,9 +55,9 @@ const OperatorStats = ({ operators }) => {
 
   return (
     <div className="operatorsStatsContainer">
-      <div>
-        <h1 className="titleOperators" onClick={() => setDisplayChoice("attackers")}>Attackers</h1>
-        <h1 className="titleOperators" onClick={() => setDisplayChoice("defenders")}>Defenders</h1>
+      <div className="attackerDefenderChoiceContainer">
+        <h1 className={`titleOperatorsAttack ${displayChoice === "attackers" ? "selectedDisplay" : null}`} onClick={() => setDisplayChoice("attackers")}>Attackers<img className="attackDefendImage" alt="attackers" src={require('./images/AttackerNoBackground.png')} /></h1>
+        <h1 className={`titleOperatorsDefense ${displayChoice === "defenders" ? "selectedDisplay" : null}`} onClick={() => setDisplayChoice("defenders")}><img className="attackDefendImage" alt="attackers" src={require('./images/defendersR6NoBackground.png')} />Defenders</h1>
       </div>
       <div className="operatorsHeader">
         <h1>Operator</h1>
