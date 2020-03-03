@@ -32,16 +32,16 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
         {/*       Favorite attacker     */}
 
         <div className="favoriteOperators">
-          <div className="favoriteAttacker">
+          <div
+            className="favoriteAttacker"
+            style={{
+              backgroundImage: `url(https://cdn.r6stats.com/full-figures/${favAttacker[5].Operator.toLowerCase()}_figure.png)`,
+              backgroundSize: '50%',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'bottom -100px right 150px'
+            }}
+          >
             <h2 className="titleFavoriteOperator">Favorite attacker: {favAttacker[5].Operator}</h2>
-            <img
-              className="favoriteOperatorImage"
-              src={`https://r6tab.com/images/operators/${favAttacker[5].id.replace(
-                ":",
-                "-"
-              )}.png?`}
-              alt="favorite operator"
-            />
             <p className="favoriteOperator">
               <FontAwesomeIcon
                 icon={faCrosshairs}
@@ -64,16 +64,16 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
 
           {/*       Favorite defender       */}
 
-          <div className="favoriteDefender">
+          <div
+            className="favoriteDefender"
+            style={{
+              backgroundImage: `url(https://cdn.r6stats.com/full-figures/${favDefender[5].Operator.toLowerCase()}_figure.png)`,
+              backgroundSize: '50%',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'bottom -100px right 150px'
+            }}
+          >
             <h2 className="titleFavoriteOperator">Favorite defender {favDefender[5].Operator}</h2>
-            <img
-              className="favoriteOperatorImage"
-              src={`https://r6tab.com/images/operators/${favDefender[5].id.replace(
-                ":",
-                "-"
-              )}.png?`}
-              alt="favorite operator"
-            />
             <p className="favoriteOperator">
               <FontAwesomeIcon
                 icon={faCrosshairs}
