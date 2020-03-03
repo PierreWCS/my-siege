@@ -78,11 +78,10 @@
 
 .navigationContainer {
     position: absolute;
-    top: 10%;
+    top: 15%;
     left: 35%;
     width: 600px;
     height: 65px;
-    background-color: lightgray;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -91,9 +90,10 @@
 
 .linkNavigation {
     cursor: pointer;
-    color: #282c34;
+    padding: 10px;
+    color: white;
     box-sizing: border-box;
-    padding: 5px;
+    border-bottom: solid 4px white;
 }
 .linkNavigation:hover {
     transform: scale(1.1);
@@ -102,7 +102,6 @@
 .activeLink {
     color: indianred;
     border-bottom: solid 4px indianred;
-    border-color: indianred;
 }
 
 
