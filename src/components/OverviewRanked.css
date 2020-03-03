@@ -2,12 +2,25 @@
 
 @import url('https://fonts.googleapis.com/css?family=Black+Ops+One&display=swap');
 
-.rankedKD, .rankedWL, .smallStatsItem {
+.rankedKD, .rankedWL, .smallStatsItem, .titleSection {
     font-family: 'Black Ops One', cursive;
 }
 
 .rankedKD, .rankedWL {
     margin: 5px;
+}
+
+.contentStatsOverviewRankedDefense p, .contentStatsOverviewRankedAttack p {
+    font-family: 'Black Ops One', cursive;
+}
+
+.titleFavoriteOperator {
+    font-family: 'Black Ops One', cursive;
+    color: black;
+}
+
+.favOperatorName {
+    color: #282c34;
 }
 
 .kdWLcontainer {
@@ -23,5 +36,27 @@
 
 .statNumberOverviewRanked {
     font-size: 32px;
+}
+
+.currentSeasonTip {
+    font-size: 20px;
+}
+
+.contentStatsOverviewRankedAttack {
+    background-image: url('./images/AttackerNoBackground.png');
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: top 10px left 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contentStatsOverviewRankedDefense {
+    background-image: url('./images/defendersR6NoBackground.png');
+    background-size: 100px;
+    background-position: top 10px right 10px;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
 }
 
