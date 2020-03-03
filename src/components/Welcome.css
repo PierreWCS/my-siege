@@ -10,12 +10,14 @@
 .welcomeMessage {
     position: absolute;
     color: white;
+    font-family: 'Black Ops One', cursive;
     font-size: 74px;
     top: 25%;
     left: 42%;
 }
 
 .needStatsButton {
+    font-family: 'Black Ops One', cursive;
     position: absolute;
     color: white;
     top: 75%;
