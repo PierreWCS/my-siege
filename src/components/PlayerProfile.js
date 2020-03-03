@@ -175,7 +175,14 @@ const PlayerStats = player => {
               <OperatorStats operators={operators} />
           }
         </div>
-      ) : null}
+      ) :
+        <img
+          // eslint-disable-next-line no-undef
+          src={require("./images/logoSiege.png")}
+          alt="loading ..."
+          className="loadingImagePlayerProfile"
+        />
+      }
     </div>
   );
 };

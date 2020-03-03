@@ -95,7 +95,7 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
                   {favAttacker[3][1]}
                 </p>
                 <p className="favoriteOperatorRatioAttacker">
-                  Ratio :{" "}
+                  Ratio:{" "}
                   {Math.round((favAttacker[2][1] / favAttacker[3][1]) * 100) /
                     100}
                 </p>
@@ -133,7 +133,7 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
                   {favDefender[3][1]}
                 </p>
                 <p className="favoriteOperatorRatioDefender">
-                  Ratio :{" "}
+                  Ratio:{" "}
                   {Math.round((favDefender[2][1] / favDefender[3][1]) * 100) /
                     100}
                 </p>
