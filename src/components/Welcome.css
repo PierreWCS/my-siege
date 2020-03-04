@@ -13,7 +13,7 @@
     font-family: 'Black Ops One', cursive;
     font-size: 74px;
     top: 25%;
-    left: 42%;
+    left: 40%;
 }
 
 .needStatsButton {
@@ -23,7 +23,7 @@
     top: 75%;
     border: solid 2px white;
     background-color: transparent;
-    left: 46%;
+    left: 45%;
     padding: 25px;
 }
 .needStatsButton:hover {
