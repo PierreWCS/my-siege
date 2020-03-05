@@ -77,7 +77,7 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
             }}
           >
             <div className="contentStatsOverviewRankedAttack">
-              <h2 className="titleFavoriteOperator">FAVORITE ATTACKER :</h2>
+              <h2 className="titleFavoriteOperator">FAVORITE ATTACKER</h2>
               <div className="operatorStatsSmallContainerAttacker">
                 <h2 className="favOperatorName">{favAttacker[5].Operator}</h2>
                 <p className="favoriteOperatorKillsAttacker">
@@ -115,7 +115,7 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
             }}
           >
             <div className="contentStatsOverviewRankedDefense">
-              <h2 className="titleFavoriteOperator">FAVORITE DEFENDER :</h2>
+              <h2 className="titleFavoriteOperator">FAVORITE DEFENDER</h2>
               <div className="operatorStatsSmallContainerDefender">
                 <h2 className="favOperatorName">{favDefender[5].Operator}</h2>
                 <p className="favoriteOperatorDefenderKills">
