@@ -4,6 +4,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./R6stats.css";
 import axios from "axios";
 import PlayerProfile from "./PlayerProfile";
+import FavoriteProfile from "./FavoriteProfile/FavoriteProfile";
 
 const R6stats = () => {
   const [playersProposition, setPlayersProposition] = useState(null);
@@ -49,6 +50,7 @@ const R6stats = () => {
             setPlayersProposition(null);
           }}
         />
+        <FavoriteProfile />
         <p className="newSearchText">New search</p>
         {playerSelected ? (
           <PlayerProfile

@@ -5,6 +5,7 @@ import ranks from "./datas/ranks";
 import op from "./datas/operators";
 import OverviewRanked from "./OverviewRanked";
 import OperatorStats from "./OperatorsStats";
+import FavoriteButton from "./Favorite/FavoriteButton";
 
 const PlayerStats = player => {
   const [playerProfile, setPlayerProile] = useState(null);
@@ -117,6 +118,7 @@ const PlayerStats = player => {
                 </h4>
               </div>
             </div>
+            <FavoriteButton playerProfile={playerProfile} />
 
             {/*     Actual MMR      */}
 

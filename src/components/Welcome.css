@@ -26,6 +26,7 @@
     left: 45%;
     padding: 25px;
     animation: shake 2.5s infinite;
+    cursor: pointer;
 }
 
 @keyframes shake {
