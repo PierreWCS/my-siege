@@ -1,10 +1,8 @@
-Work in progress . . .
+! Api down !
 
 Demo here:
 
 https://my-siege.netlify.com/
-
-Special thanks to @Silaex !
 
 ## Available Scripts
 
