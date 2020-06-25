@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "./PlayerProfile.css";
 import ranks from "./datas/ranks";
@@ -7,8 +7,8 @@ import OverviewRanked from "./OverviewRanked";
 import OperatorStats from "./OperatorsStats";
 import FavoriteButton from "./Favorite/FavoriteButton";
 
-const PlayerStats = ({player}) => {
-  const [playerProfile, setPlayerProile] = useState(null);
+const PlayerStats = ({ player }) => {
+  const [playerProfile, setPlayerProfile] = useState(null);
   const [operators, setOperators] = useState(null);
   const [favDefender, setFavDefender] = useState(null);
   const [favAttacker, setFavAttacker] = useState(null);
@@ -18,29 +18,32 @@ const PlayerStats = ({player}) => {
 
   useEffect(() => {
     // fetchProfile();
-    getNewApi();
-    getPlayerOperatorsStats();
+    getPlayerStats();
   }, []);
 
-  const getNewApi = () => {
+  const getPlayerStats = async function () {
+    let stockPlayerData = getPlayerSeasonStats();
+    await setPlayerProfile(stockPlayerData);
+  };
+
+  const getPlayerSeasonStats = function () {
     console.log(player);
     Axios({
       method: "get",
       url: `https://api2.r6stats.com/public-api/stats/${player.username}/pc/seasonal`,
-      headers: {Authorization: tokenKey}
+      headers: { Authorization: tokenKey}
     })
-      .then(result => result.data)
-      .then(data => {
-        console.log(data);
-        setPlayerProile(data);
+      .then(result => {
+        setPlayerProfile(result.data);
+        getPlayerOperatorsStats();
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
   };
 
   const getPlayerOperatorsStats = () => {
     Axios({
       method: 'get',
-      headers: {Authorization: tokenKey},
+      headers: { Authorization: tokenKey },
       url: `https://api2.r6stats.com/public-api/stats/${player.username}/pc/operators`
     })
       .then(result => {
@@ -169,18 +172,18 @@ const PlayerStats = ({player}) => {
                 alt="player profile"
               />
               <div className="nameAndLvl">
-                <h1 style={{color: "white"}}>{playerProfile.username}</h1>
-                <h4 style={{color: "white"}}>
+                <h1 style={{ color: "white" }}>{playerProfile.username}</h1>
+                <h4 style={{ color: "white" }}>
                   Level {player.progressionStats.level}
                 </h4>
               </div>
             </div>
-            <FavoriteButton playerProfile={playerProfile}/>
+            <FavoriteButton playerProfile={playerProfile} />
 
             {/*     Actual MMR      */}
 
             <div>
-              <h2 className="playerRanks" style={{color: "white", margin: 0}}>
+              <h2 className="playerRanks" style={{ color: "white", margin: 0 }}>
                 {ranks[player.seasonalStats.max_rank].name}
               </h2>
               <div className="actualRankContainer">
@@ -200,8 +203,8 @@ const PlayerStats = ({player}) => {
                   alt=""
                 />
               </div>
-              <div className="currentMmrPlayer" style={{textAlign: "center"}}>
-                <h3 style={{color: "white", margin: 0}}>
+              <div className="currentMmrPlayer" style={{ textAlign: "center" }}>
+                <h3 style={{ color: "white", margin: 0 }}>
                   Current MMR {player.seasonalStats.mmr}
                 </h3>
               </div>
@@ -231,14 +234,13 @@ const PlayerStats = ({player}) => {
 
           {/*       Content       */}
 
-          {page === "overview" && favAttacker && favDefender ? (
+          {page === "overview" ? (
             <OverviewRanked
               playerProfile={playerProfile}
               favAttacker={favAttacker}
               favDefender={favDefender}
             />
-          ) :
-            null}
+          ) : <OperatorStats operators={operators.operators} /> }
         </div>
       ) : (
         <img
