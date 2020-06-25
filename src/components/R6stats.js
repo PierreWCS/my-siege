@@ -20,12 +20,16 @@ const R6stats = () => {
   const getPlayerStats = () => {
     if (playerName && playerName.length > 3) {
       setLoading(true);
-      let apiUrl = `https://r6tab.com/api/search.php?platform=uplay&search=${playerName}`;
-      axios
-        .get(apiUrl)
+      let apiUrl = `https://r6stats.com/api/player-search/${playerName}/pc`;
+      axios ({
+        method: 'get',
+        url: apiUrl
+      })
         .then(result => result.data)
         .then(data => {
-          let players = data.results;
+          console.log(data);
+          console.log(data[0]);
+          let players = data;
           if (players) {
             if (players.length < 15) {
               setPlayersProposition(players);
@@ -83,12 +87,12 @@ const R6stats = () => {
                       >
                         <img
                           className="playerImage"
-                          src={`https://ubisoft-avatars.akamaized.net/${player.p_user}/default_146_146.png`}
+                          src={player.avatar_url_256}
                           alt="player"
                         />
-                        <h3 style={{ color: "white" }}>{player.p_name}</h3>
+                        <h3 style={{ color: "white" }}>{player.username}</h3>
                         <h3 style={{ color: "white" }}>
-                          lvl. {player.p_level}
+                          lvl. {player.progressionStats ? player.progressionStats.level : null}
                         </h3>
                       </div>
                     );
@@ -100,7 +104,7 @@ const R6stats = () => {
         )}
         {loading ? (
           <img
-          // eslint-disable-next-line no-undef
+            // eslint-disable-next-line no-undef
             src={require("./images/logoSiege.png")}
             alt="loading ..."
             className="loadingImage"

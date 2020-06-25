@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import "./FavoriteButton.css";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const FavoriteButton = ({ playerProfile }) => {
+  const [playerFavoriteProfiles, setPlayerFavoriteProfiles] = useState(null);
+
+  useEffect(() => {
+    getLocalSave();
+  }, []);
+
   const getLocalSave = () => {
-    return JSON.parse(localStorage.getItem("favoriteProfiles"));
+    setPlayerFavoriteProfiles(JSON.parse(localStorage.getItem("favoriteProfiles")));
+    console.log(JSON.parse(localStorage.getItem("favoriteProfiles")));
   };
 
   const updateLocalSave = profile => {
@@ -13,25 +20,25 @@ const FavoriteButton = ({ playerProfile }) => {
   };
 
   const addToFavorite = playerProfile => {
-    if (getLocalSave()) {
-      let stockLocal = getLocalSave();
+    if (playerFavoriteProfiles) {
+      let stockLocal = [...playerFavoriteProfiles];
       stockLocal.push(playerProfile);
-      updateLocalSave(playerProfile);
+      updateLocalSave(stockLocal);
     } else {
       let stockFav = [];
       stockFav.push(playerProfile);
       updateLocalSave(stockFav);
     }
   };
-  return (
-    <button
-      className="addToFavoriteButton"
-      onClick={() => addToFavorite(playerProfile)}
-    >
-      Add to favorite
-      <FontAwesomeIcon icon={faStar} className="iconFavoriteButton" />
-    </button>
-  );
+    return (
+      <button
+        className="addToFavoriteButton"
+        onClick={() => addToFavorite(playerProfile)}
+      >
+        Remove to favorite
+        <FontAwesomeIcon icon={faStar} className="iconFavoriteButton" />
+      </button>
+    )
 };
 
 export default FavoriteButton;

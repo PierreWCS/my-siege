@@ -7,7 +7,7 @@ import OverviewRanked from "./OverviewRanked";
 import OperatorStats from "./OperatorsStats";
 import FavoriteButton from "./Favorite/FavoriteButton";
 
-const PlayerStats = player => {
+const PlayerStats = ({ player }) => {
   const [playerProfile, setPlayerProile] = useState(null);
   const [operators, setOperators] = useState(null);
   const [favDefender, setFavDefender] = useState(null);
@@ -16,10 +16,25 @@ const PlayerStats = player => {
 
   useEffect(() => {
     fetchProfile();
+    getNewApi();
   }, []);
 
+  const getNewApi = () => {
+    console.log(player);
+    const tokenKey = "4743fb05-03b0-42c2-8ef7-8ff263901217";
+    Axios({
+      method: "get",
+      url: `https://api2.r6stats.com/public-api/stats/${player.p_name}/pc/generic`,
+      headers: { Authorization: tokenKey }
+    })
+      .then(result => result.data)
+      .then(data => {
+        console.log(data);
+      });
+  };
+
   const fetchProfile = () => {
-    let apiUrl = `https://r6tab.com/api/player.php?p_id=${player.player.p_id}`;
+    let apiUrl = `https://r6tab.com/api/player.php?p_id=${player.p_id}`;
 
     // Fetch player data
     Axios.get(apiUrl)
@@ -44,7 +59,7 @@ const PlayerStats = player => {
           currentTab.forEach(operatorValue => {
             const [key, value] = operatorValue;
             if (Object.keys(obj).includes(key)) {
-              obj[key].push([ statsName[index], value]);
+              obj[key].push([statsName[index], value]);
             } else {
               obj[key] = [[statsName[index], value]];
             }
@@ -155,36 +170,43 @@ const PlayerStats = player => {
 
           <div className="navigationContainer">
             <h2
-              className={`linkNavigation ${page === "overview" ? "activeLink" : null}`}
+              className={`linkNavigation ${
+                page === "overview" ? "activeLink" : null
+              }`}
               onClick={() => setPage("overview")}
-            >OVERVIEW</h2>
+            >
+              OVERVIEW
+            </h2>
             <h2
-              className={`linkNavigation ${page === "operators" ? "activeLink" : null}`}
+              className={`linkNavigation ${
+                page === "operators" ? "activeLink" : null
+              }`}
               onClick={() => setPage("operators")}
-            >OPERATORS</h2>
+            >
+              OPERATORS
+            </h2>
           </div>
 
           {/*       Content       */}
 
-          {
-            page === "overview" ?
-              <OverviewRanked
-                playerProfile={playerProfile}
-                favAttacker={favAttacker}
-                favDefender={favDefender}
-              />
-              :
-              <OperatorStats operators={operators} />
-          }
+          {page === "overview" ? (
+            <OverviewRanked
+              playerProfile={playerProfile}
+              favAttacker={favAttacker}
+              favDefender={favDefender}
+            />
+          ) : (
+            <OperatorStats operators={operators} />
+          )}
         </div>
-      ) :
+      ) : (
         <img
           // eslint-disable-next-line no-undef
           src={require("./images/logoSiege.png")}
           alt="loading ..."
           className="loadingImagePlayerProfile"
         />
-      }
+      )}
     </div>
   );
 };
