@@ -83,6 +83,11 @@
     border-bottom: indianred 4px solid;
 }
 
+.searchPlayerInput::placeholder {
+    font-family: 'Black Ops One', cursive;
+    text-align: center;
+}
+
 /*          Search propositions         */
 
 .propositionPlayerSearchContainer {

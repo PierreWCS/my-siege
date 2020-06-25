@@ -8,6 +8,11 @@ import {
 import "./OverviewRanked.css";
 
 const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
+  console.log(favAttacker);
+  console.log(favDefender);
+  console.log(playerProfile);
+  const currentSeason = playerProfile.seasons.steel_wave.regions.emea[0];
+  console.log(currentSeason);
   return (
     <div className="rankedStatsContainer">
       <RanksBySeason playerProfile={playerProfile} />
@@ -20,7 +25,7 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
             KD:{" "}
             <span className="rankedStatOverview">
               {(
-                playerProfile.ranked.EU_kills / playerProfile.ranked.EU_deaths
+                currentSeason.kills / currentSeason.deaths
               ).toFixed(2)}
             </span>
           </h2>
@@ -28,7 +33,7 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
             Winrate:{" "}
             <span className="rankedStatOverview">
               {(
-                playerProfile.ranked.EU_wins / playerProfile.ranked.EU_losses
+                currentSeason.wins / currentSeason.losses
               ).toFixed(2)}
             </span>
           </h2>
@@ -37,13 +42,13 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
           <p className="smallStatsItem">
             KILLS:{" "}
             <span className="statNumberOverviewRanked">
-              {playerProfile.ranked.EU_kills}
+              {currentSeason.kills}
             </span>
           </p>
           <p className="smallStatsItem">
             DEATHS:{" "}
             <span className="statNumberOverviewRanked">
-              {playerProfile.ranked.EU_deaths}
+              {currentSeason.deaths}
             </span>
           </p>
         </div>
@@ -51,13 +56,13 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
           <p className="smallStatsItem">
             WINS:{" "}
             <span className="statNumberOverviewRanked">
-              {playerProfile.ranked.EU_wins}
+              {currentSeason.wins}
             </span>
           </p>
           <p className="smallStatsItem">
             LOSSES:{" "}
             <span className="statNumberOverviewRanked">
-              {playerProfile.ranked.EU_losses}
+              {currentSeason.losses}
             </span>
           </p>
         </div>
@@ -70,7 +75,7 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
           <div
             className="favoriteAttacker"
             style={{
-              backgroundImage: `url(https://cdn.r6stats.com/full-figures/${favAttacker[5].Operator.toLowerCase()}_figure.png)`,
+              backgroundImage: `url(https://cdn.r6stats.com/full-figures/${favAttacker.name.toLowerCase()}_figure.png)`,
               backgroundSize: "70%",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "bottom -100px right 150px"
@@ -79,24 +84,24 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
             <div className="contentStatsOverviewRankedAttack">
               <h2 className="titleFavoriteOperator">FAVORITE ATTACKER</h2>
               <div className="operatorStatsSmallContainerAttacker">
-                <h2 className="favOperatorName">{favAttacker[5].Operator}</h2>
+                <h2 className="favOperatorName">{favAttacker.name}</h2>
                 <p className="favoriteOperatorKillsAttacker">
                   <FontAwesomeIcon
                     icon={faCrosshairs}
                     className="iconKillsDeaths"
                   />
-                  {favAttacker[2][1]}
+                  {favAttacker.kills}
                 </p>
                 <p className="favoriteOperatorDeathsAttacker">
                   <FontAwesomeIcon
                     icon={faSkullCrossbones}
                     className="iconKillsDeaths"
                   />{" "}
-                  {favAttacker[3][1]}
+                  {favAttacker.deaths}
                 </p>
                 <p className="favoriteOperatorRatioAttacker">
                   Ratio:{" "}
-                  {Math.round((favAttacker[2][1] / favAttacker[3][1]) * 100) /
+                  {Math.round((favAttacker.kills / favAttacker.deaths) * 100) /
                     100}
                 </p>
               </div>
@@ -108,7 +113,7 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
           <div
             className="favoriteDefender"
             style={{
-              backgroundImage: `url(https://cdn.r6stats.com/full-figures/${favDefender[5].Operator.toLowerCase()}_figure.png)`,
+              backgroundImage: `url(https://cdn.r6stats.com/full-figures/${favDefender.name.toLowerCase()}_figure.png)`,
               backgroundSize: "70%",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "bottom -100px left 150px"
@@ -117,24 +122,24 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
             <div className="contentStatsOverviewRankedDefense">
               <h2 className="titleFavoriteOperator">FAVORITE DEFENDER</h2>
               <div className="operatorStatsSmallContainerDefender">
-                <h2 className="favOperatorName">{favDefender[5].Operator}</h2>
+                <h2 className="favOperatorName">{favDefender.name}</h2>
                 <p className="favoriteOperatorDefenderKills">
                   <FontAwesomeIcon
                     icon={faCrosshairs}
                     className="iconKillsDeaths"
                   />{" "}
-                  {favDefender[2][1]}
+                  {favDefender.kills}
                 </p>
                 <p className="favoriteOperatorDeathsDefender">
                   <FontAwesomeIcon
                     icon={faSkullCrossbones}
                     className="iconKillsDeaths"
                   />{" "}
-                  {favDefender[3][1]}
+                  {favDefender.deaths}
                 </p>
                 <p className="favoriteOperatorRatioDefender">
                   Ratio:{" "}
-                  {Math.round((favDefender[2][1] / favDefender[3][1]) * 100) /
+                  {Math.round((favDefender.kills / favDefender.deaths) * 100) /
                     100}
                 </p>
               </div>
