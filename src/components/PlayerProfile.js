@@ -4,7 +4,6 @@ import "./PlayerProfile.css";
 import ranks from "./datas/ranks";
 import OverviewRanked from "./OverviewRanked";
 import OperatorStats from "./OperatorsStats";
-import FavoriteButton from "./Favorite/FavoriteButton";
 
 const PlayerStats = ({ player }) => {
   const [playerProfile, setPlayerProfile] = useState(null);
@@ -20,21 +19,19 @@ const PlayerStats = ({ player }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getPlayerStats = async function () {
+  const getPlayerStats = async function() {
     let stockPlayerData = getPlayerSeasonStats();
     await setPlayerProfile(stockPlayerData);
   };
 
-  const getPlayerSeasonStats = function () {
-    console.log(player);
+  const getPlayerSeasonStats = function() {
     Axios({
       method: "get",
       url: `https://api2.r6stats.com/public-api/stats/${player.username}/pc/seasonal`,
-      headers: { Authorization: tokenKey}
+      headers: { Authorization: tokenKey }
     })
       .then(result => {
         setPlayerProfile(result.data);
-        console.log(result.data);
         getPlayerOperatorsStats();
       })
       .catch(error => console.log(error));
@@ -42,121 +39,43 @@ const PlayerStats = ({ player }) => {
 
   const getPlayerOperatorsStats = () => {
     Axios({
-      method: 'get',
+      method: "get",
       headers: { Authorization: tokenKey },
       url: `https://api2.r6stats.com/public-api/stats/${player.username}/pc/operators`
-    })
-      .then(result => {
-        let requestRes = result.data;
-        console.log(requestRes);
-        let favoriteDefender = null;
-        let currentDefenderKills = 0;
-        requestRes.operators.map(operator => {
-          if (operator.role === 'Defender' && operator.kills > currentDefenderKills) {
-            favoriteDefender = operator;
-            currentDefenderKills = operator.kills;
-            return 1;
-          } else return 0;
-        });
+    }).then(result => {
+      let requestRes = result.data;
+      let favoriteDefender = null;
+      let currentDefenderKills = 0;
+      requestRes.operators.map(operator => {
+        if (
+          operator.role === "Defender" &&
+          operator.kills > currentDefenderKills
+        ) {
+          favoriteDefender = operator;
+          currentDefenderKills = operator.kills;
+          return 1;
+        } else return 0;
+      });
 
-        let favoriteAttacker = null;
-        let currentAttackerKills = 0;
-        requestRes.operators.map(operator => {
-          if (operator.role === 'Attacker' && operator.kills > currentAttackerKills) {
-            favoriteAttacker = operator;
-            currentAttackerKills = operator.kills;
-            return 1;
-          } else return 0;
-        });
-        console.log(favoriteAttacker);
-        setFavDefender(favoriteDefender);
+      let favoriteAttacker = null;
+      let currentAttackerKills = 0;
+      requestRes.operators.map(operator => {
+        if (
+          operator.role === "Attacker" &&
+          operator.kills > currentAttackerKills
+        ) {
+          favoriteAttacker = operator;
+          currentAttackerKills = operator.kills;
+          return 1;
+        } else return 0;
+      });
+      setFavDefender(favoriteDefender);
 
-        console.log(favoriteDefender);
-        setFavAttacker(favoriteAttacker);
+      setFavAttacker(favoriteAttacker);
 
-        setOperators(requestRes);
-      })
+      setOperators(requestRes);
+    });
   };
-
-  // Old API treatment, i wanna keep it because the treatment is interesting
-
-  // const fetchProfile = () => {
-  //   let apiUrl = `https://r6tab.com/api/player.php?p_id=${player.p_id}`;
-  //
-  //   // Fetch player data
-  //   Axios.get(apiUrl)
-  //     .then(result => result.data)
-  //     .then(data => {
-  //       console.log(data);
-  //       let playerData = data;
-  //       let operatorsData = JSON.parse(data.operators);
-  //
-  //       // Taking favorite attacker and defender
-  //       setFavAttacker(playerData.favattacker);
-  //       setFavDefender(playerData.favdefender);
-  //
-  //       let keysAndValues = operatorsData.map(element => {
-  //         return Object.entries(element);
-  //       });
-  //
-  //       // Creating array of operators more properly than the API
-  //       let obj = {};
-  //       const statsName = ["wins", "losses", "kills", "deaths", "time_played"];
-  //       keysAndValues.forEach((currentTab, index) => {
-  //         currentTab.forEach(operatorValue => {
-  //           const [key, value] = operatorValue;
-  //           if (Object.keys(obj).includes(key)) {
-  //             obj[key].push([statsName[index], value]);
-  //           } else {
-  //             obj[key] = [[statsName[index], value]];
-  //           }
-  //         });
-  //       });
-  //       setOperators(obj);
-  //
-  //       // Searching the favorite attacker
-  //
-  //       let stockAttackerStats = keysAndValues.map(element => {
-  //         return element.find(a => a[0] === playerData.favattacker);
-  //       });
-  //       let attackerStats = op.find(a => a.id === stockAttackerStats[0][0]);
-  //       stockAttackerStats.push(attackerStats);
-  //       setFavAttacker(stockAttackerStats);
-  //
-  //       // Searching the favorite defender
-  //
-  //       let stockDefenderStats = keysAndValues.map(element => {
-  //         return element.find(a => a[0] === playerData.favdefender);
-  //       });
-  //       let defenderStats = op.find(a => a.id === stockDefenderStats[0][0]);
-  //       stockDefenderStats.push(defenderStats);
-  //       setFavDefender(stockDefenderStats);
-  //
-  //       // Finding the player's favorite operator by the selector: Max kills
-  //       let kills = keysAndValues[2];
-  //
-  //       let counter = 0;
-  //       let favoriteKillsOperator = 0;
-  //       for (let i = 0; i < kills.length; i++) {
-  //         if (kills[i][1] > counter) {
-  //           counter = kills[i][1];
-  //           favoriteKillsOperator = kills[i];
-  //         } else {
-  //           console.log("plus petit");
-  //         }
-  //       }
-  //
-  //       // Getting all the stats about this operator in the request
-  //       let favoriteOperatorResult = keysAndValues.map(element => {
-  //         return element.find(a => a[0] === favoriteKillsOperator[0]);
-  //       });
-  //
-  //       // Getting the operator's data in the JSON
-  //       let opStats = op.find(a => a.id === favoriteOperatorResult[0][0]);
-  //       console.log(opStats.Operator);
-  //       setPlayerProile(playerData);
-  //     });
-  // };
 
   return (
     <div className="playerStatsInfoContainer">
@@ -180,34 +99,47 @@ const PlayerStats = ({ player }) => {
                 </h4>
               </div>
             </div>
-            <FavoriteButton playerProfile={playerProfile} />
 
             {/*     Actual MMR      */}
 
             <div>
               <h2 className="playerRanks" style={{ color: "white", margin: 0 }}>
-                {player.seasonalStats.max_rank > 0 ? ranks[player.seasonalStats.max_rank].name : 'unranked'}
+                {player.seasonalStats.max_rank > 0
+                  ? ranks[player.seasonalStats.max_rank].name
+                  : "unranked"}
               </h2>
               <div className="actualRankContainer">
                 <img
                   className="previousRank"
-                  src={player.seasonalStats.max_rank > 0 ? ranks[player.seasonalStats.max_rank - 1].image : ranks[0].image}
+                  src={
+                    player.seasonalStats.max_rank > 0
+                      ? ranks[player.seasonalStats.max_rank - 1].image
+                      : ranks[0].image
+                  }
                   alt=""
                 />
                 <img
                   className="actualRank"
-                  src={player.seasonalStats.max_rank > 0 ? ranks[player.seasonalStats.max_rank].image : ranks[0].image}
+                  src={
+                    player.seasonalStats.max_rank > 0
+                      ? ranks[player.seasonalStats.max_rank].image
+                      : ranks[0].image
+                  }
                   alt=""
                 />
                 <img
                   className="nextRank"
-                  src={player.seasonalStats.max_rank > 0 ? ranks[player.seasonalStats.max_rank + 1].image : ranks[0].image}
+                  src={
+                    player.seasonalStats.max_rank > 0
+                      ? ranks[player.seasonalStats.max_rank + 1].image
+                      : ranks[0].image
+                  }
                   alt=""
                 />
               </div>
               <div className="currentMmrPlayer" style={{ textAlign: "center" }}>
                 <h3 style={{ color: "white", margin: 0 }}>
-                  Current MMR {player.seasonalStats.mmr || 'unranked'}
+                  Current MMR {player.seasonalStats.mmr || "unranked"}
                 </h3>
               </div>
             </div>
@@ -242,7 +174,9 @@ const PlayerStats = ({ player }) => {
               favAttacker={favAttacker}
               favDefender={favDefender}
             />
-          ) : <OperatorStats operators={operators.operators} /> }
+          ) : (
+            <OperatorStats operators={operators.operators} />
+          )}
         </div>
       ) : (
         <img

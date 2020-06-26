@@ -4,7 +4,6 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./R6stats.css";
 import axios from "axios";
 import PlayerProfile from "./PlayerProfile";
-import FavoriteProfile from "./FavoriteProfile/FavoriteProfile";
 
 const R6stats = () => {
   const [playersProposition, setPlayersProposition] = useState(null);
@@ -13,7 +12,6 @@ const R6stats = () => {
   const [loading, setLoading] = useState(false);
 
   const handleChange = event => {
-    console.log(event.target.value);
     setPlayerName(event.target.value);
   };
 
@@ -21,14 +19,12 @@ const R6stats = () => {
     if (playerName && playerName.length > 3) {
       setLoading(true);
       let apiUrl = `https://r6stats.com/api/player-search/${playerName}/pc`;
-      axios ({
-        method: 'get',
+      axios({
+        method: "get",
         url: apiUrl
       })
         .then(result => result.data)
         .then(data => {
-          console.log(data);
-          console.log(data[0]);
           let players = data;
           if (players) {
             if (players.length < 15) {
@@ -55,7 +51,6 @@ const R6stats = () => {
             setPlayersProposition(null);
           }}
         />
-        <FavoriteProfile />
         <p className="newSearchText">New search</p>
         {playerSelected ? (
           <PlayerProfile
@@ -77,10 +72,10 @@ const R6stats = () => {
               </div>
               {playersProposition ? (
                 <div className="propositionPlayerSearchContainer">
-                  {playersProposition.map(player => {
+                  {playersProposition.map((player, key) => {
                     return (
                       <div
-                        key={player.id}
+                        key={key}
                         className="playerCard"
                         onClick={() => {
                           setPlayerSelected(player);
@@ -93,7 +88,10 @@ const R6stats = () => {
                         />
                         <h3 style={{ color: "white" }}>{player.username}</h3>
                         <h3 style={{ color: "white" }}>
-                          lvl. {player.progressionStats ? player.progressionStats.level : null}
+                          lvl.{" "}
+                          {player.progressionStats
+                            ? player.progressionStats.level
+                            : null}
                         </h3>
                       </div>
                     );

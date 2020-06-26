@@ -4,7 +4,6 @@ import OperatorCard from "./OperatorCard";
 
 const OperatorStats = ({ operators }) => {
   const [displayChoice, setDisplayChoice] = useState("attackers");
-  console.log(operators);
 
   return (
     <div className="operatorsStatsContainer">
@@ -50,14 +49,14 @@ const OperatorStats = ({ operators }) => {
           ? operators.map((operator, key) => {
               if (operator.role === "Attacker") {
                 return <OperatorCard key={key} operator={operator} />;
-              } else return null
+              } else return null;
             })
           : null}
         {operators && displayChoice === "defenders"
           ? operators.map((operator, key) => {
               if (operator.role === "Defender") {
                 return <OperatorCard key={key} operator={operator} />;
-              } else return null
+              } else return null;
             })
           : null}
       </div>

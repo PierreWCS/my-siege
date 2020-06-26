@@ -9,7 +9,6 @@ import "./OverviewRanked.css";
 
 const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
   const currentSeason = playerProfile.seasons.steel_wave.regions.emea[0];
-  console.log(currentSeason);
   if (favAttacker && favDefender) {
     return (
       <div className="rankedStatsContainer">
@@ -39,7 +38,9 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
             </div>
           ) : (
             <div className="kdWLcontainer">
-              <h2 style={{ margin: '50px 0'}} className="rankedKD">No games played this season</h2>
+              <h2 style={{ margin: "50px 0" }} className="rankedKD">
+                No games played this season
+              </h2>
             </div>
           )}
 
