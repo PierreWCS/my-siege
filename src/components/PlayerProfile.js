@@ -171,6 +171,7 @@ const PlayerStats = ({ player }) => {
           {page === "overview" ? (
             <OverviewRanked
               playerProfile={playerProfile}
+              player={player}
               favAttacker={favAttacker}
               favDefender={favDefender}
             />

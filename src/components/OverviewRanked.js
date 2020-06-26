@@ -7,42 +7,59 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./OverviewRanked.css";
 
-const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
+const OverviewRanked = ({ playerProfile, favAttacker, favDefender, player }) => {
   const currentSeason = playerProfile.seasons.steel_wave.regions.emea[0];
   if (favAttacker && favDefender) {
     return (
       <div className="rankedStatsContainer">
         <RanksBySeason playerProfile={playerProfile} />
         <div className="rankedStatsSection">
-          <h1 className="titleSection">
-            RANKED <span className="currentSeasonTip">current season</span>
-          </h1>
+          <h2 className="titleSection">
+            CURRENT <span className="currentSeasonTip">ranked season stats</span>
+          </h2>
           {currentSeason.kills ? (
             <div className="kdWLcontainer">
-              <h2 className="rankedKD">
+              <h3 className="rankedKD">
                 KD:{" "}
                 <span className="rankedStatOverview">
                   {currentSeason.kills
                     ? (currentSeason.kills / currentSeason.deaths).toFixed(2)
                     : 0}
                 </span>
-              </h2>
-              <h2 className="rankedWL">
+              </h3>
+              <h3 className="rankedWL">
                 Winrate:{" "}
                 <span className="rankedStatOverview">
                   {currentSeason.wins
                     ? (currentSeason.wins / currentSeason.losses).toFixed(2)
                     : 0}
                 </span>
-              </h2>
+              </h3>
             </div>
           ) : (
             <div className="kdWLcontainer">
-              <h2 style={{ margin: "50px 0" }} className="rankedKD">
+              <h3 style={{ margin: "10px 0" }} className="rankedKD">
                 No games played this season
-              </h2>
+              </h3>
             </div>
           )}
+          <h2 style={{ marginTop: '10px'}} className="titleSection">
+            GLOBAL <span className="currentSeasonTip">ranked stats</span>
+          </h2>
+              <div className="kdWLcontainer">
+                <h3 className="rankedKD">
+                  KD:{" "}
+                  <span className="rankedStatOverview">
+                  {player.genericStats.kd.toFixed(2)}
+                </span>
+                </h3>
+                <h3 className="rankedWL">
+                  Winrate:{" "}
+                  <span className="rankedStatOverview">
+                  {player.genericStats.wl.toFixed(2)}
+                </span>
+                </h3>
+              </div>
 
           {/*       Player's favorite attacker and defender       */}
 
