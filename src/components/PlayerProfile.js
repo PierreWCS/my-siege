@@ -35,6 +35,7 @@ const PlayerStats = ({ player }) => {
     })
       .then(result => {
         setPlayerProfile(result.data);
+        console.log(result.data);
         getPlayerOperatorsStats();
       })
       .catch(error => console.log(error));
@@ -48,7 +49,7 @@ const PlayerStats = ({ player }) => {
     })
       .then(result => {
         let requestRes = result.data;
-        console.log(result.data);
+        console.log(requestRes);
         let favoriteDefender = null;
         let currentDefenderKills = 0;
         requestRes.operators.map(operator => {
@@ -160,7 +161,7 @@ const PlayerStats = ({ player }) => {
     <div className="playerStatsInfoContainer">
       {/*       Overview      */}
 
-      {playerProfile ? (
+      {playerProfile && favDefender && favAttacker ? (
         <div className="statsMainContainer">
           <div className="imgNameAndLvl">
             {/*   Image name and Lvl    */}
@@ -184,28 +185,28 @@ const PlayerStats = ({ player }) => {
 
             <div>
               <h2 className="playerRanks" style={{ color: "white", margin: 0 }}>
-                {ranks[player.seasonalStats.max_rank].name}
+                {player.seasonalStats.max_rank > 0 ? ranks[player.seasonalStats.max_rank].name : 'unranked'}
               </h2>
               <div className="actualRankContainer">
                 <img
                   className="previousRank"
-                  src={ranks[player.seasonalStats.max_rank - 1].image}
+                  src={player.seasonalStats.max_rank > 0 ? ranks[player.seasonalStats.max_rank - 1].image : ranks[0].image}
                   alt=""
                 />
                 <img
                   className="actualRank"
-                  src={ranks[player.seasonalStats.max_rank].image}
+                  src={player.seasonalStats.max_rank > 0 ? ranks[player.seasonalStats.max_rank].image : ranks[0].image}
                   alt=""
                 />
                 <img
                   className="nextRank"
-                  src={ranks[player.seasonalStats.max_rank + 1].image}
+                  src={player.seasonalStats.max_rank > 0 ? ranks[player.seasonalStats.max_rank + 1].image : ranks[0].image}
                   alt=""
                 />
               </div>
               <div className="currentMmrPlayer" style={{ textAlign: "center" }}>
                 <h3 style={{ color: "white", margin: 0 }}>
-                  Current MMR {player.seasonalStats.mmr}
+                  Current MMR {player.seasonalStats.mmr || 'unranked'}
                 </h3>
               </div>
             </div>

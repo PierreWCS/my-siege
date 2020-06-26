@@ -54,7 +54,7 @@ const R6stats = () => {
             setPlayersProposition(null);
           }}
         />
-        <FavoriteProfile />
+        {/*<FavoriteProfile />*/}
         <p className="newSearchText">New search</p>
         {playerSelected ? (
           <PlayerProfile

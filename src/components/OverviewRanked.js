@@ -9,6 +9,7 @@ import "./OverviewRanked.css";
 
 const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
   const currentSeason = playerProfile.seasons.steel_wave.regions.emea[0];
+  console.log(currentSeason);
   if (favAttacker && favDefender) {
     return (
       <div className="rankedStatsContainer">
@@ -17,50 +18,57 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
           <h1 className="titleSection">
             RANKED <span className="currentSeasonTip">current season</span>
           </h1>
-          <div className="kdWLcontainer">
-            <h2 className="rankedKD">
-              KD:{" "}
-              <span className="rankedStatOverview">
-              {(
-                currentSeason.kills / currentSeason.deaths
-              ).toFixed(2)}
-            </span>
-            </h2>
-            <h2 className="rankedWL">
-              Winrate:{" "}
-              <span className="rankedStatOverview">
-              {(
-                currentSeason.wins / currentSeason.losses
-              ).toFixed(2)}
-            </span>
-            </h2>
-          </div>
+          {currentSeason.kills ? (
+            <div className="kdWLcontainer">
+              <h2 className="rankedKD">
+                KD:{" "}
+                <span className="rankedStatOverview">
+                  {currentSeason.kills
+                    ? (currentSeason.kills / currentSeason.deaths).toFixed(2)
+                    : 0}
+                </span>
+              </h2>
+              <h2 className="rankedWL">
+                Winrate:{" "}
+                <span className="rankedStatOverview">
+                  {currentSeason.wins
+                    ? (currentSeason.wins / currentSeason.losses).toFixed(2)
+                    : 0}
+                </span>
+              </h2>
+            </div>
+          ) : (
+            <div className="kdWLcontainer">
+              <h2 className="rankedKD">No games played this season</h2>
+            </div>
+          )}
+
           <div className="statsRankedSmallContainer">
             <p className="smallStatsItem">
               KILLS:{" "}
               <span className="statNumberOverviewRanked">
-              {currentSeason.kills}
-            </span>
+                {currentSeason.kills}
+              </span>
             </p>
             <p className="smallStatsItem">
               DEATHS:{" "}
               <span className="statNumberOverviewRanked">
-              {currentSeason.deaths}
-            </span>
+                {currentSeason.deaths}
+              </span>
             </p>
           </div>
           <div className="statsRankedSmallContainer">
             <p className="smallStatsItem">
               WINS:{" "}
               <span className="statNumberOverviewRanked">
-              {currentSeason.wins}
-            </span>
+                {currentSeason.wins}
+              </span>
             </p>
             <p className="smallStatsItem">
               LOSSES:{" "}
               <span className="statNumberOverviewRanked">
-              {currentSeason.losses}
-            </span>
+                {currentSeason.losses}
+              </span>
             </p>
           </div>
 
@@ -72,7 +80,11 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
             <div
               className="favoriteAttacker"
               style={{
-                backgroundImage: `url(https://cdn.r6stats.com/full-figures/${favAttacker.name.toLowerCase()}_figure.png)`,
+                backgroundImage: `url(https://cdn.r6stats.com/full-figures/${
+                  favAttacker.name === "Nøkk"
+                    ? "nokk"
+                    : favAttacker.name.toLowerCase()
+                }_figure.png)`,
                 backgroundSize: "70%",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "bottom -100px right 150px"
@@ -98,8 +110,9 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
                   </p>
                   <p className="favoriteOperatorRatioAttacker">
                     Ratio:{" "}
-                    {Math.round((favAttacker.kills / favAttacker.deaths) * 100) /
-                    100}
+                    {Math.round(
+                      (favAttacker.kills / favAttacker.deaths) * 100
+                    ) / 100}
                   </p>
                 </div>
               </div>
@@ -110,7 +123,11 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
             <div
               className="favoriteDefender"
               style={{
-                backgroundImage: `url(https://cdn.r6stats.com/full-figures/${favDefender.name.toLowerCase()}_figure.png)`,
+                backgroundImage: `url(https://cdn.r6stats.com/full-figures/${
+                  favDefender.name === "Jäger"
+                    ? "jager"
+                    : favDefender.name.toLowerCase()
+                }_figure.png)`,
                 backgroundSize: "70%",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "bottom -100px left 150px"
@@ -136,8 +153,9 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
                   </p>
                   <p className="favoriteOperatorRatioDefender">
                     Ratio:{" "}
-                    {Math.round((favDefender.kills / favDefender.deaths) * 100) /
-                    100}
+                    {Math.round(
+                      (favDefender.kills / favDefender.deaths) * 100
+                    ) / 100}
                   </p>
                 </div>
               </div>
@@ -147,7 +165,6 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
       </div>
     );
   } else return null;
-
 };
 
 export default OverviewRanked;
