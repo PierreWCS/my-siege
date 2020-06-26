@@ -39,38 +39,9 @@ const OverviewRanked = ({ playerProfile, favAttacker, favDefender }) => {
             </div>
           ) : (
             <div className="kdWLcontainer">
-              <h2 className="rankedKD">No games played this season</h2>
+              <h2 style={{ margin: '50px 0'}} className="rankedKD">No games played this season</h2>
             </div>
           )}
-
-          <div className="statsRankedSmallContainer">
-            <p className="smallStatsItem">
-              KILLS:{" "}
-              <span className="statNumberOverviewRanked">
-                {currentSeason.kills}
-              </span>
-            </p>
-            <p className="smallStatsItem">
-              DEATHS:{" "}
-              <span className="statNumberOverviewRanked">
-                {currentSeason.deaths}
-              </span>
-            </p>
-          </div>
-          <div className="statsRankedSmallContainer">
-            <p className="smallStatsItem">
-              WINS:{" "}
-              <span className="statNumberOverviewRanked">
-                {currentSeason.wins}
-              </span>
-            </p>
-            <p className="smallStatsItem">
-              LOSSES:{" "}
-              <span className="statNumberOverviewRanked">
-                {currentSeason.losses}
-              </span>
-            </p>
-          </div>
 
           {/*       Player's favorite attacker and defender       */}
 

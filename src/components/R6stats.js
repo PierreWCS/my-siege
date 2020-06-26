@@ -41,6 +41,7 @@ const R6stats = () => {
   };
   useEffect(() => {
     getPlayerStats();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerName]);
 
   return (
@@ -54,7 +55,7 @@ const R6stats = () => {
             setPlayersProposition(null);
           }}
         />
-        {/*<FavoriteProfile />*/}
+        <FavoriteProfile />
         <p className="newSearchText">New search</p>
         {playerSelected ? (
           <PlayerProfile

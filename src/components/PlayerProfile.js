@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "./PlayerProfile.css";
 import ranks from "./datas/ranks";
-import op from "./datas/operators";
 import OverviewRanked from "./OverviewRanked";
 import OperatorStats from "./OperatorsStats";
 import FavoriteButton from "./Favorite/FavoriteButton";
@@ -17,8 +16,8 @@ const PlayerStats = ({ player }) => {
   const tokenKey = "4743fb05-03b0-42c2-8ef7-8ff263901217";
 
   useEffect(() => {
-    // fetchProfile();
     getPlayerStats();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getPlayerStats = async function () {
@@ -56,7 +55,8 @@ const PlayerStats = ({ player }) => {
           if (operator.role === 'Defender' && operator.kills > currentDefenderKills) {
             favoriteDefender = operator;
             currentDefenderKills = operator.kills;
-          }
+            return 1;
+          } else return 0;
         });
 
         let favoriteAttacker = null;
@@ -65,7 +65,8 @@ const PlayerStats = ({ player }) => {
           if (operator.role === 'Attacker' && operator.kills > currentAttackerKills) {
             favoriteAttacker = operator;
             currentAttackerKills = operator.kills;
-          }
+            return 1;
+          } else return 0;
         });
         console.log(favoriteAttacker);
         setFavDefender(favoriteDefender);

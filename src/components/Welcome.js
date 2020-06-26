@@ -28,6 +28,7 @@ const Welcome = () => {
       clearInterval(action);
       clearInterval(buttonOn);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
