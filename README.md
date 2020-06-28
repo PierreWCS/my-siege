@@ -1,5 +1,3 @@
-! Api down !
-
 Demo here:
 
 https://my-siege.netlify.com/
