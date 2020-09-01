@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import "./R6stats.css";
-import axios from "axios";
-import PlayerProfile from "./PlayerProfile";
+import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import './R6stats.css';
+import axios from 'axios';
+import PlayerProfile from './PlayerProfile';
 
 const R6stats = () => {
   const [playersProposition, setPlayersProposition] = useState(null);
@@ -11,21 +11,28 @@ const R6stats = () => {
   const [playerSelected, setPlayerSelected] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setPlayerName(event.target.value);
   };
 
   const getPlayerStats = () => {
     if (playerName && playerName.length > 3) {
       setLoading(true);
-      let apiUrl = `https://r6stats.com/api/player-search/${playerName}/pc`;
+      const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
+      const apiURL = `https://r6stats.com/api/player-search/${playerName}/pc`;
+
+      // BRUH
       axios({
-        method: "get",
-        url: apiUrl
+        method: 'get',
+        url: PROXY_URL + apiURL,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
       })
-        .then(result => result.data)
-        .then(data => {
-          let players = data;
+        .then((result) => result.data)
+        .then((data) => {
+          console.log(data);
+          let players = data.data;
           if (players) {
             if (players.length < 15) {
               setPlayersProposition(players);
@@ -35,6 +42,7 @@ const R6stats = () => {
         });
     }
   };
+
   useEffect(() => {
     getPlayerStats();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -78,6 +86,7 @@ const R6stats = () => {
                         key={key}
                         className="playerCard"
                         onClick={() => {
+                          console.log(player);
                           setPlayerSelected(player);
                         }}
                       >
@@ -86,9 +95,9 @@ const R6stats = () => {
                           src={player.avatar_url_256}
                           alt="player"
                         />
-                        <h3 style={{ color: "white" }}>{player.username}</h3>
-                        <h3 style={{ color: "white" }}>
-                          lvl.{" "}
+                        <h3 style={{ color: 'white' }}>{player.username}</h3>
+                        <h3 style={{ color: 'white' }}>
+                          lvl.{' '}
                           {player.progressionStats
                             ? player.progressionStats.level
                             : null}
@@ -104,7 +113,7 @@ const R6stats = () => {
         {loading ? (
           <img
             // eslint-disable-next-line no-undef
-            src={require("./images/logoSiege.png")}
+            src={require('./images/logoSiege.png')}
             alt="loading ..."
             className="loadingImage"
           />
